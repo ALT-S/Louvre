@@ -1,0 +1,5 @@
+alt_app:
+    resource: "@ALTAppBundle/Resources/config/routing.yml"
+    prefix:   /
+
+

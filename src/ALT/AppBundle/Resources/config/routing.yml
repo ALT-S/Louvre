@@ -1,0 +1,3 @@
+alt_app_homepage:
+    path:     /
+    defaults: { _controller: ALTAppBundle:Default:index }
