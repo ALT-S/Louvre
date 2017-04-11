@@ -1,0 +1,173 @@
+body {
+    background: #e9edf0;
+}
+
+.container {
+    background-color: rgb(255, 255, 255);
+}
+
+a.navbar-brand {
+    float: none;
+}
+
+.menu {
+    border-top: 4px solid #860101;
+    padding: 22px;
+}
+
+ul.nav.nav-pills.nav-stacked {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.pannier {
+    border-top: 4px solid #16212c;
+    border-bottom: 1px solid #16212c;
+    padding: 22px;
+}
+
+.resa {
+    border: solid 2px #e9edf0;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+h1 {
+    background-color: #860101;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+    .jumbotron h1, .jumbotron .h1 {
+        font-size: 32px;
+    }
+}
+
+h4 {
+    color: white;
+    margin: 0;
+    background-color: black;
+    padding: 20px;
+}
+
+.musee {
+    color: white;
+    margin: 0;
+    background-color: #860101;
+    padding: 20px;
+    font-size: 24px;
+}
+
+h3 {
+    color: white;
+    margin: 0;
+    background-color: black;
+    padding: 8px 25px 8px 20px;
+    font-size: 16px;
+}
+
+.texte {
+    margin: 20px;
+    padding: 8px 25px 8px 20px;
+}
+
+h5 {
+    font-weight: bold;
+    font-size: 18px;
+    color: #666;
+}
+
+h6 {
+    background: none repeat scroll 0 0 #e6e6e6;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 7px 40px;
+}
+
+.louvre {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.information {
+    padding: 15px 40px 15px 40px;
+}
+
+.information2 {
+    padding: 15px 40px 15px 7px;
+}
+
+.aide {
+    padding: 15px 40px 15px 40px;
+}
+
+.align {
+    text-align: right;
+}
+
+.none {
+    list-style: none;
+}
+
+li.none.col-sm-11 {
+    padding: 0 15px 22px 0;
+}
+
+.cgv {
+    margin: 20px;
+    padding: 0;
+}
+
+.list li a {
+    font-size: 18px;
+    color: #666;
+    font-weight: bold;
+}
+
+.bis {
+    font-weight: bold;
+}
+
+ol.none.col-sm-11 {
+    padding: 0 15px 22px 0;
+}
+
+.liste:before {
+    content: '- ';
+}
+
+li.liste {
+    padding-left: 15px;
+}
+
+.fin {
+    text-align: right;
+    font-size: 16px;
+    margin-top: 40px;
+    padding-right: 20px;
+}
+
+.tarifs {
+    padding: 50px 40px 15px 40px;
+    font-size: 18px;
+}
+
+.tarif {
+    padding: 0 0 13px 0;
+}
+
+.reduit {
+    padding: 0 40px 15px 40px;
+}
+
+li.color a {
+    color: #6E6E6E;
+    font-size: 17px;
+}
+
+
+
+
