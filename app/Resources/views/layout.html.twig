@@ -9,7 +9,7 @@
     {% block stylesheets %}
         {# On charge le CSS de bootstrap depuis le site directement #}
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="{{ asset('bundles/altapp/css/billetterie.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/billetterie.css') }}">
     {% endblock %}
 
 </head>
@@ -21,30 +21,30 @@
     <div class="row">
 
         <div class="col-sm-3 sidebar">
-            <img alt="logo louvre" class="logo" src= {{ asset('bundles/altapp/image/images.jpeg') }}>
+            <img alt="logo louvre" class="logo" src= {{ asset('image/images.jpeg') }}>
             <h1>Musée du Louvre</h1>
 
             <div class="menu">
                 <h4>Menu</h4>
                 <ul class="nav nav-pills nav-stacked">
                     <li>
-                        <a class="{% if app.request.attributes.get('_route') == 'alt_app_accueil' %}navbar-brand{% endif %} "
-                           href="{{ path('alt_app_accueil') }}">Accueil <i class=" glyphicon glyphicon-home"></i> </a>
+                        <a class="{% if app.request.attributes.get('_route') == 'accueil' %}navbar-brand{% endif %} "
+                           href="{{ path('accueil') }}">Accueil <i class=" glyphicon glyphicon-home"></i> </a>
                     </li>
 
                     <li>
-                        <a class="{% if app.request.attributes.get('_route') == 'alt_app_tarifs' %}navbar-brand{% endif %}"
-                           href="{{ path('alt_app_tarifs') }}">Tarifs</a>
+                        <a class="{% if app.request.attributes.get('_route') == 'tarifs' %}navbar-brand{% endif %}"
+                           href="{{ path('tarifs') }}">Tarifs</a>
                     </li>
 
                     <li>
-                        <a class="{% if app.request.attributes.get('_route') == 'alt_app_aide' %}navbar-brand{% endif %}"
-                           href="{{ path('alt_app_aide') }}">Aide/FAQ</a>
+                        <a class="{% if app.request.attributes.get('_route') == 'aide' %}navbar-brand{% endif %}"
+                           href="{{ path('aide') }}">Aide/FAQ</a>
                     </li>
 
                     <li>
-                        <a class="{% if app.request.attributes.get('_route') == 'alt_app_cgv' %}navbar-brand{% endif %}"
-                           href="{{ path('alt_app_cgv') }}">CGV</a>
+                        <a class="{% if app.request.attributes.get('_route') == 'cgv' %}navbar-brand{% endif %}"
+                           href="{{ path('cgv') }}">CGV</a>
                     </li>
 
                 </ul>

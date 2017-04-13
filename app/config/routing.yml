@@ -1,5 +1,6 @@
 alt_app:
-    resource: "@ALTAppBundle/Resources/config/routing.yml"
+    resource: "@ALTAppBundle/Controller"
     prefix:   /
+    type: annotation
 
 
