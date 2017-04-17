@@ -16,7 +16,7 @@ class Commande
 {
     /**
      * @ORM\ManyToOne(targetEntity="ALT\AppBundle\Entity\Client",inversedBy="commande")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $client;
     
@@ -39,7 +39,7 @@ class Commande
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateVisite", type="datetime")
+     * @ORM\Column(name="dateVisite", type="date")
      */
     private $dateVisite;
 
@@ -53,14 +53,14 @@ class Commande
     /**
      * @var float
      *
-     * @ORM\Column(name="tarif", type="float")
+     * @ORM\Column(name="tarif", type="float", nullable=true)
      */
     private $tarif;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="codeReservation", type="string", length=255)
+     * @ORM\Column(name="codeReservation", type="string", length=255, nullable=true)
      */
     private $codeReservation;
 
@@ -74,14 +74,14 @@ class Commande
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateFacturation", type="datetime")
+     * @ORM\Column(name="dateFacturation", type="datetime", nullable=true)
      */
     private $dateFacturation;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="numeroTransaction", type="string", length=255)
+     * @ORM\Column(name="numeroTransaction", type="string", length=255, nullable=true)
      */
     private $numeroTransaction;
     
@@ -89,9 +89,16 @@ class Commande
     /**
      * @var string
      *
-     * @ORM\Column(name="data", type="string", length=255)
+     * @ORM\Column(name="data", type="string", length=255, nullable=true)
      */
     private $data;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="nbBillets", type="integer")
+     */
+    private $nbBillets;
 
     /**
      * @var
@@ -107,6 +114,7 @@ class Commande
         // Par défaut, la date de la commande est la date d'aujourd'hui
         $this->dateCommande = new \Datetime();
         $this->billets = new ArrayCollection();
+        $this->statut = 1;
     }
 
     /**
@@ -357,6 +365,18 @@ class Commande
     public function getType()
     {
         return $this->type;
+    }
+
+    public function getNbBillets()
+    {
+        return $this->nbBillets;
+    }
+
+    public function setNbBillets($nbBillets)
+    {
+        $this->nbBillets = $nbBillets;
+
+        return $this;
     }
 
     /**
