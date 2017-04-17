@@ -48,7 +48,7 @@ class Billet
      * @var string
      *
      * @ORM\Column(name="pays", type="string", length=255)
-     * @Assert\Length(min=3)
+     * @Assert\Length(min=2)
      * @Assert\NotBlank()
      */
     private $pays;
@@ -65,9 +65,16 @@ class Billet
     /**
      * @var float
      *
-     * @ORM\Column(name="tarif", type="float")
+     * @ORM\Column(name="tarif", type="float", nullable=true)
      */
     private $tarif;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="tarifReduit", type="boolean")
+     */
+    private $tarifReduit;
     
     /**
      * Get id
@@ -221,5 +228,29 @@ class Billet
     public function getCommande()
     {
         return $this->commande;
+    }
+
+    /**
+     * Set tarifReduit
+     *
+     * @param boolean $tarifReduit
+     *
+     * @return Billet
+     */
+    public function setTarifReduit($tarifReduit)
+    {
+        $this->tarifReduit = $tarifReduit;
+
+        return $this;
+    }
+
+    /**
+     * Get tarifReduit
+     *
+     * @return boolean
+     */
+    public function getTarifReduit()
+    {
+        return $this->tarifReduit;
     }
 }

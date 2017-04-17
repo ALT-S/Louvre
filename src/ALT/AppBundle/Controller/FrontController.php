@@ -9,7 +9,9 @@
 namespace ALT\AppBundle\Controller;
 
 
+use ALT\AppBundle\Entity\Billet;
 use ALT\AppBundle\Entity\Commande;
+use ALT\AppBundle\Form\BilletType;
 use ALT\AppBundle\Form\CommandeType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -65,19 +67,33 @@ class FrontController extends Controller
 
         // Sinon, on affiche le formulaire pour que chaque client enregistre son nom sur le billet
 
+        $billet = new Billet();
+        $billet->setCommande($commande);
 
+        $form = $this->get('form.factory')->create(BilletType::class, $billet);
 
-        return $this->render('ALTAppBundle::Infos.html.twig');
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form-> isValid()){
+            $em = $this-> getDoctrine()->getManager();
+            $em->persist($billet);
+            $em->flush();
+            
+            return $this->redirectToRoute('panier');
+        }
+
+        return $this->render('ALTAppBundle::Infos.html.twig', array(
+            'form' => $form->createView(), // Passage du formulaire à la vue
+        ));
     }
 
     /**
      * @return \Symfony\Component\HttpFoundation\Response
      *
-     * @Route("/pannier", name="pannier")
+     * @Route("/panier", name="panier")
      */
-    function pannierAction()
+    function panierAction()
     {
-        return $this->render('ALTAppBundle::Pannier.html.twig');
+        return $this->render('ALTAppBundle::Panier.html.twig');
     }
 
     /**
