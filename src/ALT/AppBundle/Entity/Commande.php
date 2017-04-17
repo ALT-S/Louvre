@@ -2,6 +2,7 @@
 
 namespace ALT\AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -15,7 +16,7 @@ class Commande
 {
     /**
      * @ORM\ManyToOne(targetEntity="ALT\AppBundle\Entity\Client",inversedBy="commande")
-     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $client;
     
@@ -92,6 +93,21 @@ class Commande
      */
     private $data;
 
+    /**
+     * @var
+     * @ORM\OneToMany(targetEntity="ALT\AppBundle\Entity\Billet", mappedBy="commande", fetch="EXTRA_LAZY", cascade={"remove"})
+     */
+    private $billets;
+
+    /**
+     * Commande constructor.
+     */
+    public function __construct()
+    {
+        // Par défaut, la date de la commande est la date d'aujourd'hui
+        $this->dateCommande = new \Datetime();
+        $this->billets = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -272,30 +288,6 @@ class Commande
     }
 
     /**
-     * Set typeTransaction
-     *
-     * @param string $typeTransaction
-     *
-     * @return Commande
-     */
-    public function setTypeTransaction($typeTransaction)
-    {
-        $this->typeTransaction = $typeTransaction;
-
-        return $this;
-    }
-
-    /**
-     * Get typeTransaction
-     *
-     * @return string
-     */
-    public function getTypeTransaction()
-    {
-        return $this->typeTransaction;
-    }
-
-    /**
      * Set data
      *
      * @param string $data
@@ -341,5 +333,63 @@ class Commande
     public function getClient()
     {
         return $this->client;
+    }
+
+    /**
+     * Set type
+     *
+     * @param integer $type
+     *
+     * @return Commande
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return integer
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Add billet
+     *
+     * @param \ALT\AppBundle\Entity\Billet $billet
+     *
+     * @return Commande
+     */
+    public function addBillet(\ALT\AppBundle\Entity\Billet $billet)
+    {
+        $this->billets[] = $billet;
+
+        return $this;
+    }
+
+    /**
+     * Remove billet
+     *
+     * @param \ALT\AppBundle\Entity\Billet $billet
+     */
+    public function removeBillet(\ALT\AppBundle\Entity\Billet $billet)
+    {
+        $this->billets->removeElement($billet);
+    }
+
+    /**
+     * Get billets
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getBillets()
+    {
+        return $this->billets;
     }
 }
