@@ -39,7 +39,7 @@ class Commande
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateVisite", type="datetime")
+     * @ORM\Column(name="dateVisite", type="date")
      */
     private $dateVisite;
 
@@ -92,6 +92,13 @@ class Commande
      * @ORM\Column(name="data", type="string", length=255)
      */
     private $data;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="nbBillets", type="integer")
+     */
+    private $nbBillets;
 
     /**
      * @var
@@ -357,6 +364,18 @@ class Commande
     public function getType()
     {
         return $this->type;
+    }
+
+    public function getNbBillets()
+    {
+        return $this->nbBillets;
+    }
+
+    public function setNbBillets($nbBillets)
+    {
+        $this->nbBillets = $nbBillets;
+
+        return $this;
     }
 
     /**

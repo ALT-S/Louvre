@@ -1,6 +1,7 @@
 {% extends "::layout.html.twig" %}
 
 {% block body %}
+
     <div class="texte">
         <p>
             Pour commander, vous devez sélectionner :
@@ -19,16 +20,23 @@
         </p>
     </div>
 
-    <h3>Choisissez une date</h3>
-    <p>
+    <form>
+        <h3>Choisissez une date</h3>
+        <p>
+            {{ form_widget(form.dateVisite) }}
+        </p>
+        <h3>Choisissez le type de billet</h3>
+        <p>
+            {{ form_widget(form.type) }}
+        </p>
+        <h3>Choisissez le nombre de billet</h3>
+        <p>
+            {{ form_widget(form.nbBillets) }}
+        </p>
 
-    </p>
-    <h3>Choisissez le type de billet</h3>
-    <p>
+        <input type="submit" value="Envoyer" />
+        {{ form_rest(form) }}
 
-    </p>
-    <h3>Choisissez le nombre de billet</h3>
-    <p>
+    </form>
 
-    </p>
 {% endblock %}

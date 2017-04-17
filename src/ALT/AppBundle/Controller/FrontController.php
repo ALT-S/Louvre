@@ -9,6 +9,8 @@
 namespace ALT\AppBundle\Controller;
 
 
+use ALT\AppBundle\Entity\Commande;
+use ALT\AppBundle\Form\CommandeType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -21,7 +23,12 @@ class FrontController extends Controller
      */
     function accueilAction()
     {
-        return $this->render('ALTAppBundle::Billetterie.html.twig');
+        $commande = new Commande(); // Création d'un objet "Commande" vide
+        $form = $this->get('form.factory')->create(CommandeType::class, $commande); // Création du formulaire basé sur le type "CommandeType"
+
+        return $this->render('ALTAppBundle::Billetterie.html.twig', array(
+            'form' => $form->createView(), // Passage du formulaire à la vue
+        ));
     }
 
     /**
