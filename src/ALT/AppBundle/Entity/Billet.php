@@ -15,7 +15,7 @@ class Billet
 {
     /**
      * @ORM\ManyToOne(targetEntity="ALT\AppBundle\Entity\Commande",inversedBy="billet")
-     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $commande;
     
@@ -68,8 +68,7 @@ class Billet
      * @ORM\Column(name="tarif", type="float")
      */
     private $tarif;
-
-
+    
     /**
      * Get id
      *
@@ -175,31 +174,7 @@ class Billet
     {
         return $this->dateNaissance;
     }
-
-    /**
-     * Set type
-     *
-     * @param string $type
-     *
-     * @return Billet
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
+    
     /**
      * Set tarif
      *

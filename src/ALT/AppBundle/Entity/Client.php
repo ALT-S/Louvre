@@ -2,6 +2,7 @@
 
 namespace ALT\AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -48,6 +49,19 @@ class Client
      */
     private $prenom;
 
+    /**
+     * @var
+     * @ORM\OneToMany(targetEntity="ALT\AppBundle\Entity\Commande", mappedBy="client", fetch="EXTRA_LAZY", cascade={"remove"})
+     */
+    private $commandes;
+
+    /**
+     * Client constructor.
+     */
+    public function __construct()
+    {
+        $this->commandes = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -60,27 +74,27 @@ class Client
     }
 
     /**
-     * Set emain
+     * Set email
      *
      * @param string $emain
      *
      * @return Client
      */
-    public function setEmain($emain)
+    public function setEmail($email)
     {
-        $this->emain = $emain;
+        $this->emain = $email;
 
         return $this;
     }
 
     /**
-     * Get emain
+     * Get email
      *
      * @return string
      */
-    public function getEmain()
+    public function getEmail()
     {
-        return $this->emain;
+        return $this->email;
     }
 
     /**
@@ -130,5 +144,38 @@ class Client
     {
         return $this->prenom;
     }
-}
 
+    /**
+     * Add commande
+     *
+     * @param \ALT\AppBundle\Entity\Commande $commande
+     *
+     * @return Client
+     */
+    public function addCommande(\ALT\AppBundle\Entity\Commande $commande)
+    {
+        $this->commandes[] = $commande;
+
+        return $this;
+    }
+
+    /**
+     * Remove commande
+     *
+     * @param \ALT\AppBundle\Entity\Commande $commande
+     */
+    public function removeCommande(\ALT\AppBundle\Entity\Commande $commande)
+    {
+        $this->commandes->removeElement($commande);
+    }
+
+    /**
+     * Get commandes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommandes()
+    {
+        return $this->commandes;
+    }
+}
