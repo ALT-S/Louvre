@@ -20,23 +20,26 @@
         </p>
     </div>
 
-    <form>
+    {{ form_start(form, {'method': 'POST'}) }}
         <h3>Choisissez une date</h3>
         <p>
             {{ form_widget(form.dateVisite) }}
+            {{ form_errors(form.dateVisite) }}
         </p>
         <h3>Choisissez le type de billet</h3>
         <p>
             {{ form_widget(form.type) }}
+            {{ form_errors(form.type) }}
         </p>
         <h3>Choisissez le nombre de billet</h3>
         <p>
             {{ form_widget(form.nbBillets) }}
+            {{ form_errors(form.nbBillets) }}
         </p>
 
         <input type="submit" value="Envoyer" />
         {{ form_rest(form) }}
 
-    </form>
+    {{ form_end(form) }}
 
 {% endblock %}

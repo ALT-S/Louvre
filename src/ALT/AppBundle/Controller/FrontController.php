@@ -13,6 +13,7 @@ use ALT\AppBundle\Entity\Commande;
 use ALT\AppBundle\Form\CommandeType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class FrontController extends Controller
 {
@@ -21,10 +22,23 @@ class FrontController extends Controller
      * 
      * @Route("/",name="accueil")
      */
-    function accueilAction()
+    function accueilAction(Request $request)
     {
         $commande = new Commande(); // Création d'un objet "Commande" vide
         $form = $this->get('form.factory')->create(CommandeType::class, $commande); // Création du formulaire basé sur le type "CommandeType"
+
+        // Si le formulaire a été soumis, alors on insère son contenu en DB et on redirige vers la page suivante
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()){
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($commande);
+            $em->flush();
+
+            $request->getSession()->set('idCommande', $commande->getId());
+
+            return $this->redirectToRoute("infos");
+        }
 
         return $this->render('ALTAppBundle::Billetterie.html.twig', array(
             'form' => $form->createView(), // Passage du formulaire à la vue
@@ -36,8 +50,23 @@ class FrontController extends Controller
      * 
      * @Route("/infos", name="infos")
      */
-    function infosAction()
+    function infosAction(Request $request)
     {
+
+        $idCommande = $request->getSession()->get('idCommande');
+
+        $em = $this->getDoctrine()->getManager();
+
+        $commande = $em->getRepository('ALTAppBundle:Commande')->find($idCommande); // Récupération de l'objet commande via doctrine grâce à son ID
+        if ($commande == null) { // Si l'objet n'existe pas, on retourne sur la page d'accueil !!
+            // Ajout d'un message flash ?
+            return $this->redirectToRoute('accueil');
+        }
+
+        // Sinon, on affiche le formulaire pour que chaque client enregistre son nom sur le billet
+
+
+
         return $this->render('ALTAppBundle::Infos.html.twig');
     }
 

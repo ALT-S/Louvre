@@ -21,6 +21,7 @@ class CommandeType extends AbstractType
                 'widget' => 'single_text',
                 'attr' => ['class' => 'js-datepicker'],
                 'html5' => false,
+                'format' => 'MM/dd/yyyy',
             ))
             ->add('type', ChoiceType::class, array(
                 'choices'  => array(
