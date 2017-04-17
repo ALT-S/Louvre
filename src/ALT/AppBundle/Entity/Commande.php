@@ -44,9 +44,9 @@ class Commande
     private $dateVisite;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="type", type="integer")
+     * @ORM\Column(name="type", type="string", length=255)
      */
     private $type;
     

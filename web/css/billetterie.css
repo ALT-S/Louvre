@@ -167,7 +167,13 @@ li.color a {
     color: #6E6E6E;
     font-size: 17px;
 }
-
-
+.billets{
+    padding: 5px;
+}
+.billet{
+    border: 1px solid #860101;
+    padding: 13px;
+    border-radius: 5px;
+}
 
 
