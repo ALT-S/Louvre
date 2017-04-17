@@ -1,5 +1,51 @@
 {% extends "::layout.html.twig" %}
 
 {% block body %}
+    <h3>Votre pannier</h3>
+
+    <div>
+        <p>
+            Voici un récapitulatif de votre commande. Merci de vérifier la date et le nombre de billets pour chaque
+            offre sélectionnée.</br>
+            Pour modifier votre commande, appuyez sur le bouton retour à la sélection des billets</br>
+            Pour finaliser votre commande, appuyez sur le bouton «Valider».</br>
+        </p>
+    </div>
+    <hr>
+    <div>
+        <p>Commande N°{{ commande.codeReservation }}</p>
+        <p>Date de la commande : {{ commande.dateCommande|date('d/m/Y') }}</p>
+        <p>Nombre de billets : {{ commande.nbbillets }}</p>
+        <p>Type de billets: {{ commande.type }}</p>
+        <p>Date de la visite: {{ commande.dateVisite|date('d/m/Y') }}</p>
+
+        <hr>
+        <div class="row">
+            {% for billet in commande.billets %}
+
+                <div class="col-sm-4 billets">
+                    <div class="billet">
+                        <p>Billet n°:{{ loop.index }}</p>
+                        <p>Nom : {{ billet.nom }}</p>
+                        <p>Prénom : {{ billet.prenom }}</p>
+                        <p>Pays : {{ billet.pays }}</p>
+                        <p>Date de naissance : {{ billet.dateNaissance|date('d/m/Y') }}</p>
+                        <p>Tarif réduit : {% if billet.tarifReduit %} OUI {% else %} NON {% endif %}</p>
+                        <p>Tarif du billet : {{ billet.tarif }}</p>
+                    </div>
+                </div>
+
+            {% endfor %}
+        </div>
+
+        <p>Montant de votre commande : {{ commande.tarif }}</p>
+    </div>
+    <a class="btn btn-default" href="{{ path('accueil') }}">
+        <p> Retour à la sélection des billets</p>
+    </a>
+
+    <a class="btn btn-default" href="{{ path('coordonnees') }}">
+        <p> Valider</p>
+    </a>
 
 {% endblock %}

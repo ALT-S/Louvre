@@ -25,8 +25,8 @@ class CommandeType extends AbstractType
             ))
             ->add('type', ChoiceType::class, array(
                 'choices'  => array(
-                    'Demi-Journée' => 1,
-                    'Journée' => 2,
+                    'Demi-Journée' => 'Demi-Journée',
+                    'Journée' => 'Journée',
                 ),
                 'expanded' => true
             ))

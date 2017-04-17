@@ -9,6 +9,7 @@
 namespace ALT\AppBundle\Controller;
 
 
+use ALT\AppBundle\ALTAppBundle;
 use ALT\AppBundle\Entity\Billet;
 use ALT\AppBundle\Entity\Commande;
 use ALT\AppBundle\Form\BilletType;
@@ -91,9 +92,24 @@ class FrontController extends Controller
      *
      * @Route("/panier", name="panier")
      */
-    function panierAction()
+    function panierAction(Request $request)
     {
-        return $this->render('ALTAppBundle::Panier.html.twig');
+        $idCommande = $request->getSession()->get('idCommande');
+
+        $em = $this->getDoctrine()->getManager();
+
+        $commande = $em->getRepository('ALTAppBundle:Commande')->find($idCommande); // Récupération de l'objet commande via doctrine grâce à son ID
+        if ($commande == null) { // Si l'objet n'existe pas, on retourne sur la page d'accueil !!
+            // Ajout d'un message flash ?
+            return $this->redirectToRoute('accueil');
+        }
+        
+        $billet =$em->getRepository('ALTAppBundle:Billet')->find($idCommande);
+        
+        return $this->render('ALTAppBundle::Panier.html.twig', array(
+            'commande' =>$commande,
+            'billet' =>$billet,
+        ));
     }
 
     /**
