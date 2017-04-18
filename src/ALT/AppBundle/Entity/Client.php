@@ -76,13 +76,13 @@ class Client
     /**
      * Set email
      *
-     * @param string $emain
+     * @param string $email
      *
      * @return Client
      */
     public function setEmail($email)
     {
-        $this->emain = $email;
+        $this->email = $email;
 
         return $this;
     }
