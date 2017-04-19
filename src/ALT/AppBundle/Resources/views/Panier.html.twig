@@ -1,7 +1,7 @@
 {% extends "::layout.html.twig" %}
 
 {% block body %}
-    <h3>Votre pannier</h3>
+    <h3>Votre panier</h3>
 
     <div>
         <p>
@@ -39,11 +39,11 @@
 
         <p>Montant de votre commande : {{ commande.tarif | number_format(2, ',') }} €</p>
     </div>
-    <a class="btn btn-default" href="{{ path('accueil') }}">
+    <a class="btn btn-default" href="{{ path('infos') }}">
         <p> Retour à la sélection des billets</p>
     </a>
 
-    <a class="btn btn-default" href="{{ path('coordonnees') }}">
+    <a class="btn btn-default" href="{{ path('panier', {'validate': 'true'}) }}">
         <p> Valider</p>
     </a>
 

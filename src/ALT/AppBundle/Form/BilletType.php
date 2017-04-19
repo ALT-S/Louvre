@@ -28,7 +28,8 @@ class BilletType extends AbstractType
             ))
             ->add('tarifReduit', CheckboxType::class, array(
                 'required' => false))
-            ->add('enregistrer', SubmitType::class);
+            
+        ;
     }
 
     /**

@@ -15,6 +15,7 @@ use ALT\AppBundle\Entity\Client;
 use ALT\AppBundle\Entity\Commande;
 use ALT\AppBundle\Form\BilletType;
 use ALT\AppBundle\Form\ClientType;
+use ALT\AppBundle\Form\CommandeBilletType;
 use ALT\AppBundle\Form\CommandeType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -27,20 +28,20 @@ class FrontController extends Controller
      * 
      * @Route("/",name="accueil")
      */
-    function accueilAction(Request $request)
+    public function accueilAction(Request $request)
     {
-        $commande = new Commande(); // Création d'un objet "Commande" vide
+        $commande = $request->getSession()->get('commande');
+        if ($commande === null) {
+            $commande = new Commande();
+        }
+
         $form = $this->get('form.factory')->create(CommandeType::class, $commande); // Création du formulaire basé sur le type "CommandeType"
 
-        // Si le formulaire a été soumis, alors on insère son contenu en DB et on redirige vers la page suivante
+        // Si le formulaire a été soumis
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()){
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($commande);
-            $em->flush();
-
-            $request->getSession()->set('idCommande', $commande->getId());
+            $this->get('app.manager.commande')->preparerBillets($commande);
+            $request->getSession()->set('commande', $commande);
 
             return $this->redirectToRoute("infos");
         }
@@ -55,35 +56,18 @@ class FrontController extends Controller
      * 
      * @Route("/infos", name="infos")
      */
-    function infosAction(Request $request)
+    public function infosAction(Request $request)
     {
 
-        $idCommande = $request->getSession()->get('idCommande');
-
-        $em = $this->getDoctrine()->getManager();
-
-        $commande = $em->getRepository('ALTAppBundle:Commande')->find($idCommande); // Récupération de l'objet commande via doctrine grâce à son ID
-        if ($commande == null) { // Si l'objet n'existe pas, on retourne sur la page d'accueil !!
-            // Ajout d'un message flash ?
-            return $this->redirectToRoute('accueil');
-        }
-
-        // Sinon, on affiche le formulaire pour que chaque client enregistre son nom sur le billet
-
-        $billet = new Billet();
-        $billet->setCommande($commande);
-
-        $form = $this->get('form.factory')->create(BilletType::class, $billet);
+        $commande = $request->getSession()->get('commande');
+        $form = $this->get('form.factory')->create(CommandeBilletType::class, $commande);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form-> isValid()){
 
-            $billet = $this->get('app.manager.billet')->calculerTarif($form->getData());
+            $commande = $this->get('app.manager.commande')->calculerTarif($form->getData());
+            $request->getSession()->set('commande', $commande);
 
-            $em = $this-> getDoctrine()->getManager();
-            $em->persist($billet);
-            $em->flush();
-            
             return $this->redirectToRoute('panier');
         }
 
@@ -97,23 +81,20 @@ class FrontController extends Controller
      *
      * @Route("/panier", name="panier")
      */
-    function panierAction(Request $request)
+    public function panierAction(Request $request)
     {
-        $idCommande = $request->getSession()->get('idCommande');
+        $commande = $request->getSession()->get('commande');
 
-        $em = $this->getDoctrine()->getManager();
+        if ($request->query->has('validate')) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($commande);
+            $em->flush();
 
-        $commande = $em->getRepository('ALTAppBundle:Commande')->find($idCommande); // Récupération de l'objet commande via doctrine grâce à son ID
-        if ($commande == null) { // Si l'objet n'existe pas, on retourne sur la page d'accueil !!
-            // Ajout d'un message flash ?
-            return $this->redirectToRoute('accueil');
+            return $this->redirectToRoute('coordonnees', ['idCommande' => $commande->getId()]);
         }
-        
-        $billet =$em->getRepository('ALTAppBundle:Billet')->find($idCommande);
-        
+
         return $this->render('ALTAppBundle::Panier.html.twig', array(
             'commande' =>$commande,
-            'billet' =>$billet,
         ));
     }
 
@@ -122,9 +103,9 @@ class FrontController extends Controller
      *
      * @Route("/coordonnees", name="coordonnees")
      */
-    function coordonneesAction(Request $request)
+    public function coordonneesAction(Request $request)
     {
-        $idCommande = $request->getSession()->get('idCommande');
+        $idCommande = $request->query->get('idCommande');
 
         $em = $this->getDoctrine()->getManager();
 
@@ -134,8 +115,12 @@ class FrontController extends Controller
             return $this->redirectToRoute('accueil');
         }
 
-        $client = new Client();
-        $commande->setClient($client);
+        $client = $commande->getClient();
+        if ($client == null) {
+            $client = new Client();
+            $commande->setClient($client);
+        }
+
         $form = $this->get('form.factory')->create(ClientType::class, $client);
 
         $form->handleRequest($request);
@@ -144,20 +129,20 @@ class FrontController extends Controller
             $em->persist($client);
             $em->flush();
 
-            return $this->redirectToRoute('paiement');
+            return $this->redirectToRoute('paiement', ['idCommande' => $commande->getId()]);
         }
 
         return $this->render('ALTAppBundle::Coordonnees.html.twig', array(
             'form' => $form->createView(), // Passage du formulaire à la vue
         ));
     }
-    
+
     /**
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @Route("/paiement", name="paiement")
      */
-    function paiementAction()
+    public function paiementAction()
     {
         return $this->render('ALTAppBundle::Paiemment.html.twig');
     }
@@ -167,7 +152,7 @@ class FrontController extends Controller
      *
      * @Route("/confirmation", name="confirmation")
      */
-    function confirmationAction()
+    public function confirmationAction()
     {
         return $this->render('ALTAppBundle::Confirmation.html.twig');
     }
@@ -177,7 +162,7 @@ class FrontController extends Controller
      *
      * @Route("/tarifs", name="tarifs")
      */
-    function tarifsAction()
+    public function tarifsAction()
     {
         return $this->render('ALTAppBundle::Tarifs.html.twig');
     }
@@ -187,7 +172,7 @@ class FrontController extends Controller
      *
      * @Route("/cgv", name="cgv")
      */
-    function cgvAction()
+    public function cgvAction()
     {
         return $this->render('ALTAppBundle::CGV.html.twig');
     }
@@ -197,7 +182,7 @@ class FrontController extends Controller
      *
      * @Route("/aide", name="aide")
      */
-    function aideAction()
+    public function aideAction()
     {
         return $this->render('ALTAppBundle::Aide.html.twig');
     }
