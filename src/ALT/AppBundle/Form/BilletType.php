@@ -3,6 +3,7 @@
 namespace ALT\AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
@@ -22,7 +23,7 @@ class BilletType extends AbstractType
         $builder->add('nom', TextType::class)
             ->add('prenom', TextType::class)
             ->add('pays', CountryType::class)
-            ->add('dateNaissance', DateType::class, array(
+            ->add('dateNaissance', BirthdayType::class, array(
                 'format' => 'dd MM yyyy',
             ))
             ->add('tarifReduit', CheckboxType::class, array(

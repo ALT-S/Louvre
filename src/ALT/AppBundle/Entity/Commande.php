@@ -406,7 +406,7 @@ class Commande
     /**
      * Get billets
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Billet[]
      */
     public function getBillets()
     {
