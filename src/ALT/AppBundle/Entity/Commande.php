@@ -389,6 +389,7 @@ class Commande
     public function addBillet(\ALT\AppBundle\Entity\Billet $billet)
     {
         $this->billets[] = $billet;
+        $billet->setCommande($this);
 
         return $this;
     }
