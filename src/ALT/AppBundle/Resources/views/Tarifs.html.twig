@@ -1,29 +1,29 @@
 {% extends "::layout.html.twig" %}
 
 {% block body %}
-    <h3>Tarifs</h3>
-    <p>Billetterie en ligne</p>
+    <h3>{% trans %}Tarifs{% endtrans %}</h3>
+    <p>{% trans %}Billetterie en ligne{% endtrans %}</p>
     <div class="tarifs">
         <ul>
-            <li class="tarif"><strong>Tarif « normal » : </strong> à partir de 12 ans à 16 €</li>
-            <li class="tarif"><strong>Tarif « enfant » : </strong> à partir de 4 ans et jusqu’à 12 ans, à 8 € (l’entrée
+            <li class="tarif">{% trans %}<strong>Tarif « normal » : </strong> à partir de 12 ans à 16 €{% endtrans %}</li>
+            <li class="tarif">{% trans %}<strong>Tarif « enfant » : </strong> à partir de 4 ans et jusqu’à 12 ans, à 8 € (l’entrée
                 est gratuite
                 pour les enfants de moins
                 de 4 ans)
-            </li>
-            <li class="tarif"><strong>Tarif « senior » : </strong> à partir de 60 ans pour 12 €</li>
-            <li class="tarif"><strong>Tarif « réduit » : </strong> de 10 € accordé dans certaines conditions (étudiant,
+                {% endtrans %}</li>
+            <li class="tarif">{% trans %}<strong>Tarif « senior » : </strong> à partir de 60 ans pour 12 €{% endtrans %}</li>
+            <li class="tarif">{% trans %}<strong>Tarif « réduit » : </strong> de 10 € accordé dans certaines conditions (étudiant,
                 employé du
                 musée, d’un service du
                 Ministère de la Culture, militaire…)
-            </li>
+                {% endtrans %}</li>
         </ul>
         <div class="reduit">
-            <p>Si vous disposez d'un tarif réduit, vous devez simplement cocher la case « Tarif réduit ».</p>
-            <p><strong> Attention : </strong> Il sera nécessaire de présenter sa carte d’étudiant, militaire ou
+            <p>{% trans %}Si vous disposez d'un tarif réduit, vous devez simplement cocher la case « Tarif réduit ».{% endtrans %}</p>
+            <p>{% trans %}<strong> Attention : </strong> Il sera nécessaire de présenter sa carte d’étudiant, militaire ou
                 équivalent
                 lors de
-                l’entrée pour prouver qu’on bénéficie bien du tarif réduit.</p>
+                l’entrée pour prouver qu’on bénéficie bien du tarif réduit.{% endtrans %}</p>
         </div>
     </div>
 {% endblock %}

@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Commande
 {
     /**
-     * @ORM\ManyToOne(targetEntity="ALT\AppBundle\Entity\Client",inversedBy="commande")
+     * @ORM\ManyToOne(targetEntity="ALT\AppBundle\Entity\Client",inversedBy="commandes")
      * @ORM\JoinColumn(nullable=true)
      */
     private $client;
