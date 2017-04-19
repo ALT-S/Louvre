@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Billet
 {
     /**
-     * @ORM\ManyToOne(targetEntity="ALT\AppBundle\Entity\Commande",inversedBy="billet")
+     * @ORM\ManyToOne(targetEntity="ALT\AppBundle\Entity\Commande",inversedBy="billets")
      * @ORM\JoinColumn(nullable=false)
      */
     private $commande;

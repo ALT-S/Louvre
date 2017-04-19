@@ -1,32 +1,32 @@
 {% extends "::layout.html.twig" %}
 
 {% block body %}
-    <h3>4. Renseignez les informations</h3>
+    <h3>{% trans %}4. Renseignez les informations{% endtrans %}</h3>
     {{ form_start(form, {'method': 'POST'}) }}
 
     {% for formBillets in form.billets %}
-    <div class="row">
-        <div class="col-sm-3">
-            BILLET N°{{ loop.index }}
+        <div class="row infos">
+            <div class="col-sm-3 numero">
+                {% trans %} BILLET N°{% endtrans %}{{ loop.index }}
+            </div>
+
+            <div class="col-sm-9 info ">
+
+
+                {{ form_row(formBillets.nom) }}
+
+                {{ form_row(formBillets.prenom) }}
+
+                {{ form_row(formBillets.pays) }}
+
+                {{ form_row(formBillets.dateNaissance) }}
+
+                {{ form_row(formBillets.tarifReduit) }}
+
+            </div>
         </div>
-
-        <div class="col-sm-9 ">
-
-
-            {{ form_row(formBillets.nom) }}
-
-            {{ form_row(formBillets.prenom) }}
-
-            {{ form_row(formBillets.pays) }}
-
-            {{ form_row(formBillets.dateNaissance) }}
-
-            {{ form_row(formBillets.tarifReduit) }}
-
-        </div>
-    </div>
     {% endfor %}
-    {{ form_row(form.enregistrer) }}
+    <div class="boutonInfo"> {{ form_row(form.enregistrer) }} </div>
 
     {{ form_rest(form) }}
     {{ form_end(form) }}

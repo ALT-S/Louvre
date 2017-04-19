@@ -176,4 +176,123 @@ li.color a {
     border-radius: 5px;
 }
 
+.billetterie{
+    padding: 25px 0 25px 0;
+}
+.numero{
+    padding-top: 15px;
+    font-weight: bold;
+    font-size: 20px;
+}
 
+.infos{
+    border-bottom: 1px solid bisque;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-top: 1px solid bisque;
+}
+.info{
+    border-left: 1px solid bisque;
+    padding-top: 15px;
+}
+
+.btn-default{
+}
+
+.boutonInfo{
+    float: right;
+    box-shadow: 5px 5px 12px 0 rgba(134, 1, 1, 0.42);
+    border-color: #860101;
+    background-color: rgba(245, 235, 235, 0.8);
+    margin-bottom: 0;
+}
+
+.boutonInfo .form-group .btn-default  {
+    box-shadow: 5px 5px 12px 0 rgba(134, 1, 1, 0.42);
+    background-color: rgba(245, 235, 235, 0.8);
+    color: #333;
+    padding: 6px 12px;
+    border: 1px solid #860101;
+    border-radius: 4px;
+    overflow: visible;
+}
+
+.valider{
+    box-shadow: 5px 5px 12px 0 rgba(134, 1, 1, 0.42);
+    background-color: rgba(245, 235, 235, 0.8);
+    color: #333;
+    padding: 6px 12px;
+    border: 1px solid #860101;
+    border-radius: 4px;
+    overflow: visible;
+    margin-left: 20px;
+}
+
+.retour{
+    box-shadow: 5px 5px 12px 0 rgba(134, 1, 1, 0.42);
+    padding: 6px 12px;
+    border-radius: 4px;
+    overflow: visible;
+    color: black;
+    background-color: rgba(245, 245, 245, 0.43);
+    border-color: #428bca;
+}
+
+
+.bouton{
+    box-shadow: 5px 5px 12px 0 rgba(134, 1, 1, 0.42);
+    background-color: rgba(245, 235, 235, 0.8);
+    color: #333;
+    padding: 6px 12px;
+    border: 1px solid #860101;
+    border-radius: 4px;
+    overflow: visible;
+}
+
+.bouton:hover
+{    color: black;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+}
+
+.panier{
+    margin: 21px 21px 10px;
+}
+
+.ticket{
+    font-size: 20px;
+    border-bottom: 1px solid #860101;
+}
+
+.montant{
+    font-size: 30px;
+}
+
+
+.form-group{
+    margin: 0;
+}
+
+.coordonnees{
+    padding: 25px 0 8px 0;
+}
+
+.detail{
+    margin: 34px;
+}
+
+.boutonEnregistrer button{
+    box-shadow: 5px 5px 12px 0 rgba(134, 1, 1, 0.42);
+    background-color: rgba(245, 235, 235, 0.8);
+    color: #333;
+    padding: 6px 12px;
+    border: 1px solid #860101;
+    border-radius: 4px;
+    overflow: visible;
+}
+
+.suiteBoutonEnregistrer{
+    text-align: right;
+    padding: 25px 0 8px 0;
+
+}
