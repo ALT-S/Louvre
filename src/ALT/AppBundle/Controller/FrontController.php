@@ -29,7 +29,15 @@ class FrontController extends Controller
      */
     function accueilAction(Request $request)
     {
-        $commande = new Commande(); // Création d'un objet "Commande" vide
+        $idCommande = $request->getSession()->get('idCommande');
+
+        $em = $this->getDoctrine()->getManager();
+
+        $commande = $em->getRepository('ALTAppBundle:Commande')->find($idCommande); // Récupération de l'objet commande via doctrine grâce à son ID
+        if ($commande == null) { // Si l'objet n'existe pas, on retourne sur la page d'accueil !!
+            $commande = new Commande(); // Création d'un objet "Commande" vide
+        }
+
         $form = $this->get('form.factory')->create(CommandeType::class, $commande); // Création du formulaire basé sur le type "CommandeType"
 
         // Si le formulaire a été soumis, alors on insère son contenu en DB et on redirige vers la page suivante
