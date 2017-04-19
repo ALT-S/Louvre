@@ -77,6 +77,9 @@ class FrontController extends Controller
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form-> isValid()){
+
+            $billet = $this->get('app.manager.billet')->calculerTarif($form->getData());
+
             $em = $this-> getDoctrine()->getManager();
             $em->persist($billet);
             $em->flush();
