@@ -85,6 +85,14 @@ class FrontController extends Controller
     {
         $commande = $request->getSession()->get('commande');
 
+        if ($request->query->has('validate')) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($commande);
+            $em->flush();
+
+            return $this->redirectToRoute('coordonnees', ['idCommande' => $commande->getId()]);
+        }
+
         return $this->render('ALTAppBundle::Panier.html.twig', array(
             'commande' =>$commande,
         ));
@@ -97,7 +105,7 @@ class FrontController extends Controller
      */
     public function coordonneesAction(Request $request)
     {
-        $idCommande = $request->getSession()->get('idCommande');
+        $idCommande = $request->query->get('idCommande');
 
         $em = $this->getDoctrine()->getManager();
 
@@ -107,8 +115,12 @@ class FrontController extends Controller
             return $this->redirectToRoute('accueil');
         }
 
-        $client = new Client();
-        $commande->setClient($client);
+        $client = $commande->getClient();
+        if ($client == null) {
+            $client = new Client();
+            $commande->setClient($client);
+        }
+
         $form = $this->get('form.factory')->create(ClientType::class, $client);
 
         $form->handleRequest($request);
@@ -117,14 +129,14 @@ class FrontController extends Controller
             $em->persist($client);
             $em->flush();
 
-            return $this->redirectToRoute('paiement');
+            return $this->redirectToRoute('paiement', ['idCommande' => $commande->getId()]);
         }
 
         return $this->render('ALTAppBundle::Coordonnees.html.twig', array(
             'form' => $form->createView(), // Passage du formulaire à la vue
         ));
     }
-    
+
     /**
      * @return \Symfony\Component\HttpFoundation\Response
      *

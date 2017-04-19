@@ -13,8 +13,5 @@ services:
         tags:
             - { name: twig.extension }
 
-    app.manager.billet:
-        class: ALT\AppBundle\Manager\BilletManager
-
     app.manager.commande:
         class: ALT\AppBundle\Manager\CommandeManager

@@ -102,7 +102,7 @@ class Commande
 
     /**
      * @var
-     * @ORM\OneToMany(targetEntity="ALT\AppBundle\Entity\Billet", mappedBy="commande", fetch="EXTRA_LAZY", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="ALT\AppBundle\Entity\Billet", mappedBy="commande", fetch="EXTRA_LAZY", cascade={"persist", "remove"})
      */
     private $billets;
 
