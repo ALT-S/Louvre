@@ -82,7 +82,7 @@ class Client
      */
     public function setEmail($email)
     {
-        $this->emain = $email;
+        $this->email = $email;
 
         return $this;
     }

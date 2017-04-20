@@ -14,6 +14,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Commande
 {
+
+    const DEMI_JOURNEE = 'Demi-Journée';
+    const JOURNEE = 'Journée';
+    
     /**
      * @ORM\ManyToOne(targetEntity="ALT\AppBundle\Entity\Client",inversedBy="commandes")
      * @ORM\JoinColumn(nullable=true)
