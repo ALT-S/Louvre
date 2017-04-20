@@ -90,6 +90,10 @@ class CommandeManager
                 $tarif = self::TARIF_REDUIT;
             }
         }
+        
+        if ($billet->getCommande()->getType() == Commande::DEMI_JOURNEE) {
+            $tarif = $tarif / 2;
+        }
 
         $billet->setTarif($tarif);
     }

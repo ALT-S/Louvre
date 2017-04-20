@@ -2,8 +2,8 @@
 
 namespace ALT\AppBundle\Form;
 
+use ALT\AppBundle\Entity\Commande;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -25,8 +25,8 @@ class CommandeType extends AbstractType
             ))
             ->add('type', ChoiceType::class, array(
                 'choices'  => array(
-                    'Demi-Journée' => 'Demi-Journée',
-                    'Journée' => 'Journée',
+                    'Demi-Journée' => Commande::DEMI_JOURNEE,
+                    'Journée' => Commande::JOURNEE,
                 ),
                 'expanded' => true
             ))
