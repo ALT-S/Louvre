@@ -19,9 +19,10 @@ class CommandeType extends AbstractType
         $builder
             ->add('dateVisite', DateType::class, array(
                 'widget' => 'single_text',
-                'attr' => ['class' => 'js-datepicker'],
+                'attr' => ['class' => 'js-datepicker',
+                    'data-date-format' => 'dd-mm-yyyy'],
                 'html5' => false,
-                'format' => 'dd/MM/yyyy',
+                'format' => 'dd-MM-yyyy',
             ))
             ->add('type', ChoiceType::class, array(
                 'choices'  => array(
