@@ -20,7 +20,7 @@
         <p><strong>{% trans %}Nombre de billets :{% endtrans %}</strong> {{ commande.nbbillets }}</p>
         <p><strong>{% trans %}Type de billets: {% endtrans %}</strong>{{ commande.type }}</p>
         <p><strong>{% trans %}Date de la visite:{% endtrans %}</strong> {{ commande.dateVisite|date('d/m/Y') }}</p>
-
+        <p><strong>{% trans %}Adresse mail pour votre confirmation:{% endtrans %}</strong> {{ commande.email }}</p>
         <hr>
         <div class="row">
             {% for billet in commande.billets %}
