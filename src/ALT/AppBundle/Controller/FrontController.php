@@ -9,12 +9,8 @@
 namespace ALT\AppBundle\Controller;
 
 
-use ALT\AppBundle\ALTAppBundle;
-use ALT\AppBundle\Entity\Billet;
-use ALT\AppBundle\Entity\Client;
+
 use ALT\AppBundle\Entity\Commande;
-use ALT\AppBundle\Form\BilletType;
-use ALT\AppBundle\Form\ClientType;
 use ALT\AppBundle\Form\CommandeBilletType;
 use ALT\AppBundle\Form\CommandeType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -84,58 +80,24 @@ class FrontController extends Controller
     public function panierAction(Request $request)
     {
         $commande = $request->getSession()->get('commande');
-
-        if ($request->query->has('validate')) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($commande);
-            $em->flush();
-
-            return $this->redirectToRoute('coordonnees', ['idCommande' => $commande->getId()]);
-        }
-
-        return $this->render('ALTAppBundle::Panier.html.twig', array(
-            'commande' =>$commande,
-        ));
-    }
-
-    /**
-     * @return \Symfony\Component\HttpFoundation\Response
-     *
-     * @Route("/coordonnees", name="coordonnees")
-     */
-    public function coordonneesAction(Request $request)
-    {
-        $idCommande = $request->query->get('idCommande');
-
-        $em = $this->getDoctrine()->getManager();
-
-        $commande = $em->getRepository('ALTAppBundle:Commande')->find($idCommande); // Récupération de l'objet commande via doctrine grâce à son ID
         if ($commande == null) { // Si l'objet n'existe pas, on retourne sur la page d'accueil !!
             // Ajout d'un message flash ?
             return $this->redirectToRoute('accueil');
         }
 
-        $client = $commande->getClient();
-        if ($client == null) {
-            $client = new Client();
-            $commande->setClient($client);
-        }
-
-        $form = $this->get('form.factory')->create(ClientType::class, $client);
-
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
+        /*if ($request->query->has('validate')) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($client);
+            $em->persist($commande);
             $em->flush();
 
-            return $this->redirectToRoute('paiement', ['idCommande' => $commande->getId()]);
-        }
+            return $this->redirectToRoute('coordonnees', ['idCommande' => $commande->getId()]);
+        }*/        
 
-        return $this->render('ALTAppBundle::Coordonnees.html.twig', array(
-            'form' => $form->createView(), // Passage du formulaire à la vue
+        return $this->render('ALTAppBundle::Panier.html.twig', array(
+            'commande' =>$commande,
         ));
     }
+    
 
     /**
      * @return \Symfony\Component\HttpFoundation\Response

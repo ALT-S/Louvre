@@ -32,6 +32,7 @@ class CommandeType extends AbstractType
                 'expanded' => true
             ))
             ->add('nbBillets')
+            ->add('email')
         ;
     }
     

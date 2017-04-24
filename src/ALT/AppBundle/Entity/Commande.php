@@ -18,11 +18,7 @@ class Commande
     const DEMI_JOURNEE = 'Demi-Journée';
     const JOURNEE = 'Journée';
     
-    /**
-     * @ORM\ManyToOne(targetEntity="ALT\AppBundle\Entity\Client",inversedBy="commandes")
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $client;
+    
     
     /**
      * @var int
@@ -111,6 +107,14 @@ class Commande
     private $billets;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255)
+     * @Assert\Email()
+     */
+    private $email;
+
+    /**
      * Commande constructor.
      */
     public function __construct()
@@ -120,6 +124,8 @@ class Commande
         $this->billets = new ArrayCollection();
         $this->statut = 1;
     }
+
+
 
     /**
      * Get id
@@ -323,29 +329,7 @@ class Commande
         return $this->data;
     }
 
-    /**
-     * Set client
-     *
-     * @param \ALT\AppBundle\Entity\Client $client
-     *
-     * @return Commande
-     */
-    public function setClient(\ALT\AppBundle\Entity\Client $client)
-    {
-        $this->client = $client;
-
-        return $this;
-    }
-
-    /**
-     * Get client
-     *
-     * @return \ALT\AppBundle\Entity\Client
-     */
-    public function getClient()
-    {
-        return $this->client;
-    }
+    
 
     /**
      * Set type
@@ -416,5 +400,29 @@ class Commande
     public function getBillets()
     {
         return $this->billets;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     *
+     * @return Commande
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
     }
 }

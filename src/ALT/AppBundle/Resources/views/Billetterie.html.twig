@@ -18,49 +18,58 @@
             </li>
         </ul>
         Puis suivre les indications données
-        {% endtrans %}
-        </p>
+        {% endtrans %}</p>
     </div>
 
     <div class="formBillet col-sm-12">
-        {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
-        {{ form_errors(form) }}
+    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+    {{ form_errors(form) }}
 
+    <h3>{% trans %}1. Votre email pour l'envoi de la confirmation{% endtrans %}</h3>
 
-        <h3>{% trans %}1. Choisissez une date{% endtrans %}</h3>
+    <div class="form-group billetterie">
+        {{ form_label(form.email, "Email", {'label_attr': {'class': 'col-lg-3 control-label'}}) }}
+        {{ form_errors(form.email) }}
 
-        <div class="form-group billetterie">
-
-            {{ form_label(form.dateVisite, "Date de visite", {'label_attr': {'class': 'col-lg-3 control-label'}}) }}
-            {{ form_errors(form.dateVisite) }}
-
-            <div class="col-lg-5">
-                {{ form_widget(form.dateVisite) }}
-            </div>
+        <div class="col-lg-5">
+            {{ form_widget(form.email) }}
         </div>
+    </div>
 
-        <h3>{% trans %}2. Choisissez le type de billet{% endtrans %}</h3>
+    <h3>{% trans %}2. Choisissez une date{% endtrans %}</h3>
 
-        <div class="form-group billetterie">
+    <div class="form-group billetterie">
 
-            {{ form_label(form.type, "Type de la visite", {'label_attr': {'class': 'col-lg-3 control-label'}}) }}
-            {{ form_errors(form.type) }}
+        {{ form_label(form.dateVisite, "Date de visite", {'label_attr': {'class': 'col-lg-3 control-label'}}) }}
+        {{ form_errors(form.dateVisite) }}
 
-            <div class="col-lg-5 choix">
-                {{ form_widget(form.type) }}
-            </div>
+        <div class="col-lg-5">
+            {{ form_widget(form.dateVisite) }}
         </div>
+    </div>
 
-        <h3>{% trans %}3. Choisissez le nombre de billet{% endtrans %}</h3>
+    <h3>{% trans %}3. Choisissez le type de billet{% endtrans %}</h3>
+
+    <div class="form-group billetterie">
+
+        {{ form_label(form.type, "Type de la visite", {'label_attr': {'class': 'col-lg-3 control-label'}}) }}
+        {{ form_errors(form.type) }}
+
+        <div class="col-lg-5 choix">
+            {{ form_widget(form.type) }}
+        </div>
+    </div>
+
+    <h3>{% trans %}4. Choisissez le nombre de billet{% endtrans %}</h3>
 
     <div class="form-group billetterie">
 
         {{ form_label(form.nbBillets, "Nombre de billets", {'label_attr': {'class': 'col-lg-3 control-label'}}) }}
         {{ form_errors(form.nbBillets) }}
 
-    <div class="col-lg-5">
-        {{ form_widget(form.nbBillets) }}
-    </div>
+        <div class="col-lg-5">
+            {{ form_widget(form.nbBillets) }}
+        </div>
 
         <input class="bouton" type="submit" value="Envoyer"/>
         {{ form_rest(form) }}

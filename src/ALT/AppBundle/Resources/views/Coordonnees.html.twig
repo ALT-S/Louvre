@@ -35,8 +35,15 @@
          </div>
 
 
-     <div class="col-lg-5"><div class="boutonEnregistrer"><p class="suiteBoutonEnregistrer">{{ form_widget(form.enregistrer, {'attr': {'class': 'btn btn-default'}}) }}</pboutonEnregistrer></div>
-     </div>{{ form_rest(form) }}
+         <div class="col-lg-5">
+             <div class="boutonEnregistrer">
+                 <p class="suiteBoutonEnregistrer">
+                     {{ form_widget(form.enregistrer, {'attr': {'class': 'btn btn-default'}}) }}
+                 </p>
+             </div>
+         </div>
+
+         {{ form_rest(form) }}
          {{ form_end(form) }}
      </div>
  {% endblock %}

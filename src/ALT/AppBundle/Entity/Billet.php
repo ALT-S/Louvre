@@ -39,8 +39,8 @@ class Billet
      * @var string
      *
      * @ORM\Column(name="prenom", type="string", length=255)
-     * @Assert\Length(min=3)
      * @Assert\NotBlank()
+     * @Assert\Length(min=3)
      */
     private $prenom;
 
