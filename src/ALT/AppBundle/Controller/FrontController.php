@@ -103,6 +103,19 @@ class FrontController extends Controller
             // Ajout d'un message flash ?
             return $this->redirectToRoute('accueil');
         }
+        
+        if ($commande->getTarif() < 1){
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($commande);
+            $em->flush();
+
+            return $this->redirectToRoute("confirmation", array(
+                'commandeId' => $commande->getId(),
+            ));
+
+        }
+
 
         if ($request->isMethod('POST')) {
             // Set your secret key: remember to change this to your live secret key in production

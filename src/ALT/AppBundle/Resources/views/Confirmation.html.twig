@@ -2,7 +2,7 @@
 
 {% block body %}
 
-    <h2>Votre paiement à bien été effectué !</h2>
+    <h2>{% if commande.tarif == 0%}Votre billet a bien été enregistré {% else %}Votre paiement a bien été effectué ! {% endif %}</h2>
 
     <p>Vous receverez votre confirmation avec vos billets par mail, à l'adresse suivante : {{ commande.email }}</p>
 
