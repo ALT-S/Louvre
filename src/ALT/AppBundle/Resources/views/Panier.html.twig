@@ -24,7 +24,9 @@
         <hr>
         <div class="row">
             {% for billet in commande.billets %}
-
+                {% if loop.index0 % 3 == 0 %}
+                </div><div class="row">
+                {% endif %}
                 <div class="col-sm-4 billets">
                     <div class="billet">
                         <p class="ticket"><strong>{% trans %}Billet n°: {% endtrans %}</strong> {{ loop.index }}</p>

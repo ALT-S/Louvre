@@ -13,5 +13,15 @@ services:
         tags:
             - { name: twig.extension }
 
+    twig.extension.image:
+        class: ALT\AppBundle\Twig\ImageExtension
+        tags:
+            - { name: twig.extension }
+
     app.manager.commande:
         class: ALT\AppBundle\Manager\CommandeManager
+        arguments: ["@doctrine.orm.entity_manager", "%stripe_api%"]
+
+    app.manager.mail:
+         class: ALT\AppBundle\Manager\MailManager
+         arguments: ["@templating.engine.twig", "%mailer_user%", "@swiftmailer.mailer"]

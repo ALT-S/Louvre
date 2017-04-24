@@ -30,4 +30,9 @@
 
     {{ form_rest(form) }}
     {{ form_end(form) }}
+
+    <a class="btn btn-default retour" href="{{ path('accueil') }}">
+        <i class="glyphicon glyphicon-chevron-left"></i>
+        {% trans %} Retour à la billetterie{% endtrans %}
+    </a>
 {% endblock %}
