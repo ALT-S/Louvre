@@ -9,7 +9,6 @@
 namespace ALT\AppBundle\Controller;
 
 
-
 use ALT\AppBundle\Entity\Commande;
 use ALT\AppBundle\Form\CommandeBilletType;
 use ALT\AppBundle\Form\CommandeType;
@@ -21,7 +20,7 @@ class FrontController extends Controller
 {
     /**
      * @return \Symfony\Component\HttpFoundation\Response
-     * 
+     *
      * @Route("/",name="accueil")
      */
     public function accueilAction(Request $request)
@@ -35,7 +34,7 @@ class FrontController extends Controller
 
         // Si le formulaire a été soumis
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             $this->get('app.manager.commande')->preparerBillets($commande);
             $request->getSession()->set('commande', $commande);
 
@@ -49,7 +48,7 @@ class FrontController extends Controller
 
     /**
      * @return \Symfony\Component\HttpFoundation\Response
-     * 
+     *
      * @Route("/infos", name="infos")
      */
     public function infosAction(Request $request)
@@ -59,7 +58,7 @@ class FrontController extends Controller
         $form = $this->get('form.factory')->create(CommandeBilletType::class, $commande);
 
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form-> isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
 
             $commande = $this->get('app.manager.commande')->calculerTarif($form->getData());
             $request->getSession()->set('commande', $commande);
@@ -85,40 +84,82 @@ class FrontController extends Controller
             return $this->redirectToRoute('accueil');
         }
 
-        /*if ($request->query->has('validate')) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($commande);
-            $em->flush();
-
-            return $this->redirectToRoute('coordonnees', ['idCommande' => $commande->getId()]);
-        }*/        
-
         return $this->render('ALTAppBundle::Panier.html.twig', array(
-            'commande' =>$commande,
+            'commande' => $commande,
         ));
     }
-    
+
 
     /**
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @Route("/paiement", name="paiement")
      */
-    public function paiementAction()
+    public function paiementAction(Request $request)
     {
+
+        $commande = $request->getSession()->get('commande');
+        if ($commande == null) { // Si l'objet n'existe pas, on retourne sur la page d'accueil !!
+            // Ajout d'un message flash ?
+            return $this->redirectToRoute('accueil');
+        }
+
+        if ($request->isMethod('POST')) {
+            // Set your secret key: remember to change this to your live secret key in production
+            // See your keys here: https://dashboard.stripe.com/account/apikeys
+            \Stripe\Stripe::setApiKey("sk_test_gaAY9UkaRiUY1KuZfE3ITuxK");
+
+            // Token is created using Stripe.js or Checkout!
+            // Get the payment token submitted by the form:
+            $token = $request->request->get('stripeToken');
+
+            try {
+                // Charge the user's card:
+                $charge = \Stripe\Charge::create(array(
+                    "amount" => $commande->getTarif() * 100, // montant en centimes !
+                    "currency" => "eur",
+                    "description" => "De l'argent qui rentre chez Anne Laure ;)",
+                    "source" => $token,
+                ));
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($commande);
+                $em->flush();
+
+                return $this->redirectToRoute("confirmation", array(
+                    'commandeId' => $commande->getId(),
+                ));
+
+            } catch (\Exception $e) {
+                // Si y'a une erreur, que faire ?
+            }
+
+        }
+
         return $this->render('ALTAppBundle::Paiemment.html.twig');
     }
-    
+
     /**
      * @return \Symfony\Component\HttpFoundation\Response
      *
-     * @Route("/confirmation", name="confirmation")
+     * @Route("/confirmation/{commandeId}", name="confirmation")
      */
-    public function confirmationAction()
+    public function confirmationAction($commandeId, Request $request)
     {
-        return $this->render('ALTAppBundle::Confirmation.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $commande = $em->getRepository('ALTAppBundle:Commande')->find($commandeId);
+
+        if ($commande === null) {
+            // erreur !
+        }
+
+        $request->getSession()->set('commande', null);
+
+        return $this->render('ALTAppBundle::Confirmation.html.twig', array(
+            'commande' => $commande
+        ));
     }
-    
+
     /**
      * @return \Symfony\Component\HttpFoundation\Response
      *
@@ -128,7 +169,7 @@ class FrontController extends Controller
     {
         return $this->render('ALTAppBundle::Tarifs.html.twig');
     }
-    
+
     /**
      * @return \Symfony\Component\HttpFoundation\Response
      *
@@ -138,7 +179,7 @@ class FrontController extends Controller
     {
         return $this->render('ALTAppBundle::CGV.html.twig');
     }
-    
+
     /**
      * @return \Symfony\Component\HttpFoundation\Response
      *
