@@ -88,7 +88,7 @@
 "Le billet est imprimable à la validation du règlement. Il est accessible\n            sous\n            forme\n            de lien et peut être\n            édité depuis le courriel de confirmation.": 'The ticket is printable for validation of the settlement. It is available as a link and can be edited from the confirmation email.'
 "Le billet doit avoir été imprimé par l’acheteur préalablement à la visite,\n            sans\n            modification de la taille\n            d’impression, pleine page, sur du papier A4 blanc, vierge recto et verso. Les billets partiellement ou\n            mal\n            imprimés, endommagés ou illisibles ne sont pas valides.\n            En cas de billet oublié, abimé, mal imprimé, ou comportant une erreur de nom du porteur, l’EPML se\n            réserve\n            la\n            possibilité de le réimprimer afin de faciliter les démarches du visiteur.": 'The ticket must have been printed by the purchaser prior to the visit, without altering the print size, full page, on white A4 paper, blank front and back. Partially or badly printed, damaged or illegible tickets are not valid. In the event of a forgotten, damaged, badly printed or mispriced ticket, the EPML reserves the right to reprint it in order to facilitate the visitor''s procedures.'
 'Le billet délivré par l’EPML comporte notamment:': 'The ticket issued by the EPML includes:'
-'le nom et le logo du Louvre': 'The name and logo of the Louvree'
+'le nom et le logo du Louvre': 'The name and logo of the Louvre'
 'le nom du porteur': 'The bearer''s name'
 'le nom de l’acheteur': 'The name of the buyer'
 'la dénomination de la prestation vendue': 'The name of the service sold'
@@ -194,6 +194,32 @@ Journée: Day
 "Tarif réduit\n                                :": 'Reduced price :'
 "Tarif du billet\n                                :": 'Ticket price :'
 Nom: Name
-Prénom: First name
+Prénom: 'First name'
 Email: Email
 Enregistrer: Save
+'1. Votre email pour l''envoi de la confirmation': '1. Your email to send the confirmation'
+'2. Choisissez une date': '2. Choose a date'
+'3. Choisissez le type de billet': '3. Choose ticket type'
+'4. Choisissez le nombre de billet': '4. Choose the number of tickets'
+Billetterie: Ticketing
+'Information billet': 'Ticket Information'
+Panier: Basket
+Paiement: Payment
+Confirmation: Confirmation
+'Votre commande a bien été enregistrée': 'Your order has been successfully registered'
+'Votre paiement a bien été effectué !': 'Your payment has been made!'
+'Vous receverez votre confirmation avec vos billets par mail, à l''adresse suivante :': 'You will receive your confirmation with your tickets by mail, at the following address:'
+"Montant de votre commande\n            :": 'Amount of your order:'
+'Retour à la billetterie': 'Back to ticketing'
+"Musée du\n    Louvre": 'Louvre museum'
+'Type de billets :': 'Type of tickets :'
+'Date de la visite :': 'Date of visit :'
+"Montant de votre commande\n        :": 'Amount of your order:'
+"Billet\n                        n°:": 'Ticket n °:'
+'Tarif du billet:': 'Ticket price:'
+'Carte de crédit ou de débit': 'Credit or debit card'
+'Adresse mail pour votre confirmation:': 'Email address for confirmation:'
+"Date de naissance\n                            :": 'Birth date :'
+"Tarif réduit\n                            :": 'Reduced price :'
+"Tarif du billet\n                            :": 'Ticket price :'
+"Pour commander, vous devez sélectionner :\n        <ul>\n            <li>\n                Remplir votre adresse mail\n            </li>\n            <li>\n                Le jour de la visite\n            </li>\n            <li>\n                Le type de billet (Journée, Demi-journée…).\n            </li>\n            <li>\n                Le nombre de billet\n            </li>\n        </ul>\n        Puis suivre les indications données": 'To order, you must select: <Ul> <li> Fill your email address </ li>  <Li> The day of the visit </ li> <li> The ticket type (Day, Half Day ...). </ Li> <Li> The number of tickets  n </ li> </ ul> Then follow the indications given'

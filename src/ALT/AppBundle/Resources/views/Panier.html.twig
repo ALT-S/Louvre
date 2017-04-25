@@ -57,7 +57,7 @@
                     <p><strong>{% trans %}Date de naissance
                             :{% endtrans %} </strong> {{ billet.dateNaissance|date('d/m/Y') }}</p>
                     <p><strong>{% trans %}Tarif réduit
-                            :{% endtrans %}</strong> {% if billet.tarifReduit %} OUI </br>(<strong>Attention
+                            :{% endtrans %}</strong> {% if billet.tarifReduit %} OUI <br>(<strong>Attention
                             :</strong> il sera nécessaire de présenter sa carte d’étudiant, militaire ou équivalent lors de l’entrée pour prouver qu’on bénéficie bien du tarif réduit.){% else %} NON {% endif %}
                     </p>
                     <p><strong>{% trans %}Tarif du billet

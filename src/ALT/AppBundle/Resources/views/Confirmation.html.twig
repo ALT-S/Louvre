@@ -17,9 +17,9 @@
 
 {% block body %}
 
-    <h2>{% if commande.tarif == 0 %}Votre commande a bien été enregistrée {% else %}Votre paiement a bien été effectué ! {% endif %}</h2>
+    <h2>{% if commande.tarif == 0 %}{% trans %}Votre commande a bien été enregistrée {% endtrans %}{% else %}{% trans %}Votre paiement a bien été effectué ! {% endtrans %}{% endif %}</h2>
 
-    <p>Vous receverez votre confirmation avec vos billets par mail, à l'adresse suivante : {{ commande.email }}</p>
+    <p>{% trans %}Vous receverez votre confirmation avec vos billets par mail, à l'adresse suivante :{% endtrans %} {{ commande.email }}</p>
 
     <div>
         <p><strong>{% trans %}Date de la commande :{% endtrans %}</strong> {{ commande.dateCommande|date('d/m/Y') }}</p>
