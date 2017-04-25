@@ -6,8 +6,11 @@ use ALT\AppBundle\Entity\Commande;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
 
 class CommandeType extends AbstractType
 {
@@ -31,8 +34,8 @@ class CommandeType extends AbstractType
                 ),
                 'expanded' => true
             ))
-            ->add('nbBillets')
-            ->add('email')
+            ->add('nbBillets', IntegerType::class)
+            ->add('email', EmailType::CLASS)
         ;
     }
     

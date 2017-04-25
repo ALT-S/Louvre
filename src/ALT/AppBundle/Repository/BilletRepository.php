@@ -10,4 +10,6 @@ namespace ALT\AppBundle\Repository;
  */
 class BilletRepository extends \Doctrine\ORM\EntityRepository
 {
+
+
 }
