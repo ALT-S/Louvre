@@ -22,12 +22,10 @@
 
 {% block body %}
 
-    Il va être temps de payer !! Ahahah !
-
     <form method="post" id="payment-form">
         <div class="form-row">
             <label for="card-element">
-                Credit or debit card
+                {% trans %}Carte de crédit ou de débit {% endtrans %}
             </label>
             <div id="card-element">
                 <!-- a Stripe Element will be inserted here. -->
@@ -37,7 +35,7 @@
             <div id="card-errors"></div>
         </div>
 
-        <button>Submit Payment</button>
+        <button>{% trans %}Paiement{% endtrans %}</button>
     </form>
 
 
