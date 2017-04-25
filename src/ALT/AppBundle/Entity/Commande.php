@@ -5,6 +5,7 @@ namespace ALT\AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use ALT\AppBundle\Validator\MaxBillet;
 
 /**
  * Commande
@@ -33,6 +34,7 @@ class Commande
      * @var \DateTime
      *
      * @ORM\Column(name="dateCommande", type="datetime")
+     * @Assert\DateTime()
      */
     private $dateCommande;
 
@@ -40,6 +42,7 @@ class Commande
      * @var \DateTime
      *
      * @ORM\Column(name="dateVisite", type="date")
+     * @Assert\DateTime()
      */
     private $dateVisite;
 
@@ -47,6 +50,7 @@ class Commande
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $type;
     
@@ -54,6 +58,7 @@ class Commande
      * @var float
      *
      * @ORM\Column(name="tarif", type="float", nullable=true)
+     *
      */
     private $tarif;
 
@@ -75,6 +80,7 @@ class Commande
      * @var \DateTime
      *
      * @ORM\Column(name="dateFacturation", type="datetime", nullable=true)
+     * @Assert\DateTime()
      */
     private $dateFacturation;
 
@@ -97,6 +103,14 @@ class Commande
      * @var int
      *
      * @ORM\Column(name="nbBillets", type="integer")
+     * @Assert\NotBlank()
+     * @Assert\Range(
+     *      min = 1,
+     *      max = 1000,
+     *      minMessage = "Vous ne pouvez pas commander moins de {{ limit }} billet",
+     *      maxMessage = "Vous ne pouvez pas commander plus de {{ limit }} billets"
+     * )
+     * @MaxBillet()
      */
     private $nbBillets;
 
@@ -110,6 +124,7 @@ class Commande
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
+     * @Assert\NotBlank()
      * @Assert\Email()
      */
     private $email;
