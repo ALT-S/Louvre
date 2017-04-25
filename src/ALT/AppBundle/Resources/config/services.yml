@@ -3,9 +3,18 @@ services:
 #         class: ALT\AppBundle\Example
 #         arguments: ["@service_id", "plain_value", "%parameter%"]
 
-services:
     alt_app.validator.maxBillet:                              # Le nom du service
         class: ALT\AppBundle\Validator\MaxBilletValidator    # La classe du service, ici notre validateur déjà créé
         arguments: [ "@doctrine.orm.entity_manager"] # Les données qu'on injecte au service : la requête et l'EntityManager
         tags:
             - { name: validator.constraint_validator, alias: alt_app_maxBillet }  # C'est avec l'alias qu'on retrouvera le service
+
+    alt_app.validator.nonReservationDates:                              # Le nom du service
+        class: ALT\AppBundle\Validator\NonReservationDatesValidator   # La classe du service, ici notre validateur déjà créé
+        tags:
+            - { name: validator.constraint_validator, alias: alt_app_nonReservationDates }  # C'est avec l'alias qu'on retrouvera le service
+
+    alt_app.validator.nonReservationType:                              # Le nom du service
+        class: ALT\AppBundle\Validator\NonReservationTypeValidator   # La classe du service, ici notre validateur déjà créé
+        tags:
+            - { name: validator.constraint_validator, alias: alt_app_nonReservationType }  # C'est avec l'alias qu'on retrouvera le service

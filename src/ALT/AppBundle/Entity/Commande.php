@@ -2,6 +2,8 @@
 
 namespace ALT\AppBundle\Entity;
 
+use ALT\AppBundle\Validator\NonReservationDates;
+use ALT\AppBundle\Validator\NonReservationType;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -12,6 +14,7 @@ use ALT\AppBundle\Validator\MaxBillet;
  *
  * @ORM\Table(name="commande")
  * @ORM\Entity(repositoryClass="ALT\AppBundle\Repository\CommandeRepository")
+ * @NonReservationType()
  */
 class Commande
 {
@@ -43,6 +46,7 @@ class Commande
      *
      * @ORM\Column(name="dateVisite", type="date")
      * @Assert\DateTime()
+     * @NonReservationDates()
      */
     private $dateVisite;
 
@@ -51,6 +55,7 @@ class Commande
      *
      * @ORM\Column(name="type", type="string", length=255)
      * @Assert\NotBlank()
+     *
      */
     private $type;
     
