@@ -1,5 +1,25 @@
 {% extends "::layout.html.twig" %}
 
+{% block fil %}
+    <span class="couleur">
+    <a class="{% if app.request.attributes.get('_route') == 'accueil' %}navbar-brand{% endif %}
+    " href="{{ path('accueil') }}">{% trans %} Billetterie {% endtrans %}</a>
+    <i class=" glyphicon glyphicon-arrow-right"></i>
+    <a class="{% if app.request.attributes.get('_route') == 'infos' %}navbar-brand{% endif %}
+    " href="{{ path('infos') }}">{% trans %} Information billet {% endtrans %}</a>
+    <i class=" glyphicon glyphicon-arrow-right"></i>
+    <a class="{% if app.request.attributes.get('_route') == 'panier' %}navbar-brand{% endif %}
+    " href="{{ path('panier') }}">{% trans %} Panier {% endtrans %}</a>
+    <i class=" glyphicon glyphicon-arrow-right"></i>
+        {% trans %} Paiement {% endtrans %}
+    </span>
+
+    <span class="gris">
+        <i class=" glyphicon glyphicon-arrow-right"></i>
+        {% trans %} Confirmation {% endtrans %}
+    </span>
+{% endblock %}
+
 {% block body %}
 
     Il va être temps de payer !! Ahahah !
@@ -42,7 +62,7 @@
         // Add an instance of the card Element into the `card-element` <div>
         card.mount('#card-element');
 
-        card.addEventListener('change', function(event) {
+        card.addEventListener('change', function (event) {
             var displayError = document.getElementById('card-errors');
             if (event.error) {
                 displayError.textContent = event.error.message;
@@ -53,10 +73,10 @@
 
         // Create a token or display an error when the form is submitted.
         var form = document.getElementById('payment-form');
-        form.addEventListener('submit', function(event) {
+        form.addEventListener('submit', function (event) {
             event.preventDefault();
 
-            stripe.createToken(card).then(function(result) {
+            stripe.createToken(card).then(function (result) {
                 if (result.error) {
                     // Inform the user if there was an error
                     var errorElement = document.getElementById('card-errors');

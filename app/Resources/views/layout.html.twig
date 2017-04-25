@@ -10,7 +10,8 @@
         {# On charge le CSS de bootstrap depuis le site directement #}
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="{{ asset('css/billetterie.css') }}">
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css">
+        <link rel="stylesheet"
+              href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css">
     {% endblock %}
 
 </head>
@@ -30,7 +31,8 @@
                 <ul class="nav nav-pills nav-stacked">
                     <li>
                         <a class="{% if app.request.attributes.get('_route') == 'accueil' %}navbar-brand{% endif %} "
-                           href="{{ path('accueil') }}">{% trans %}Accueil{% endtrans %} <i class=" glyphicon glyphicon-home"></i> </a>
+                           href="{{ path('accueil') }}">{% trans %}Accueil{% endtrans %} <i
+                                    class=" glyphicon glyphicon-home"></i> </a>
                     </li>
 
                     <li>
@@ -40,12 +42,12 @@
 
                     <li>
                         <a class="{% if app.request.attributes.get('_route') == 'aide' %}navbar-brand{% endif %}"
-                           href="{{ path('aide') }}">{% trans %}Aide/FAQ{% endtrans  %}</a>
+                           href="{{ path('aide') }}">{% trans %}Aide/FAQ{% endtrans %}</a>
                     </li>
 
                     <li>
                         <a class="{% if app.request.attributes.get('_route') == 'cgv' %}navbar-brand{% endif %}"
-                           href="{{ path('cgv') }}">{% trans %}CGV{% endtrans  %}</a>
+                           href="{{ path('cgv') }}">{% trans %}CGV{% endtrans %}</a>
                     </li>
 
                 </ul>
@@ -56,6 +58,24 @@
         <div class="col-sm-9 accueil">
 
             <h1>{% trans %}"Billetterie officielle"{% endtrans %}</h1>
+
+            <div class="fil">
+                {% block fil %}
+                    <span class="couleur">{% trans %}Billetterie{% endtrans %}</span>
+                    <i class=" glyphicon glyphicon-arrow-right"></i>
+
+                    <span class="gris">
+                        {% trans %} Information billet {% endtrans %}
+                        <i class=" glyphicon glyphicon-arrow-right"></i>
+                        {% trans %} Panier {% endtrans %}
+                        <i class=" glyphicon glyphicon-arrow-right"></i>
+                        {% trans %}Paiement{% endtrans %}
+                        <i class=" glyphicon glyphicon-arrow-right"></i>
+                        {% trans %}Confirmation{% endtrans %}
+                    </span>
+                {% endblock %}
+                <hr>
+            </div>
 
             <div class="louvre">
                 {% if app.session.flashBag.has('notice') %}
@@ -91,7 +111,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
 
     <script>
-        jQuery(document).ready(function() {
+        jQuery(document).ready(function () {
             $('.js-datepicker').datepicker();
         });
     </script>

@@ -83,7 +83,7 @@ class FrontController extends Controller
             // Ajout d'un message flash ?
             return $this->redirectToRoute('accueil');
         }
-
+        
         return $this->render('ALTAppBundle::Panier.html.twig', array(
             'commande' => $commande,
         ));
@@ -104,36 +104,37 @@ class FrontController extends Controller
             return $this->redirectToRoute('accueil');
         }
 
-        if ($request->isMethod('POST')) {
-            // Set your secret key: remember to change this to your live secret key in production
-            // See your keys here: https://dashboard.stripe.com/account/apikeys
-            \Stripe\Stripe::setApiKey("sk_test_gaAY9UkaRiUY1KuZfE3ITuxK");
+        /**
+         * Si la commande est gratuite, on passe la phase de paiement
+         */
+        if ($commande->getTarif() < 1){
 
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($commande);
+            $em->flush();
+
+            $this->get('app.manager.mail')->envoyerConfirmationCommande($commande);
+
+            return $this->redirectToRoute("confirmation", array(
+                'commandeId' => $commande->getId(),
+            ));
+
+        }
+
+        if ($request->isMethod('POST')) {
             // Token is created using Stripe.js or Checkout!
             // Get the payment token submitted by the form:
             $token = $request->request->get('stripeToken');
 
-            try {
-                // Charge the user's card:
-                $charge = \Stripe\Charge::create(array(
-                    "amount" => $commande->getTarif() * 100, // montant en centimes !
-                    "currency" => "eur",
-                    "description" => "De l'argent qui rentre chez Anne Laure ;)",
-                    "source" => $token,
-                ));
+            $resultat = $this->get('app.manager.commande')->fairePayer($commande, $token);
 
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($commande);
-                $em->flush();
+            if ($resultat) {
+                $this->get('app.manager.mail')->envoyerConfirmationCommande($commande);
 
                 return $this->redirectToRoute("confirmation", array(
                     'commandeId' => $commande->getId(),
                 ));
-
-            } catch (\Exception $e) {
-                // Si y'a une erreur, que faire ?
             }
-
         }
 
         return $this->render('ALTAppBundle::Paiemment.html.twig');

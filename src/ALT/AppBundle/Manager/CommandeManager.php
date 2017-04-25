@@ -11,6 +11,7 @@ namespace ALT\AppBundle\Manager;
 
 use ALT\AppBundle\Entity\Billet;
 use ALT\AppBundle\Entity\Commande;
+use Doctrine\ORM\EntityManager;
 
 class CommandeManager
 {
@@ -19,6 +20,15 @@ class CommandeManager
     const TARIF_SENIOR = 12.00;
     const TARIF_REDUIT = 10.00;
     const TARIF_GRATUIT = 0.00;
+
+    /** @var EntityManager */
+    private $manager;
+
+    public function __construct(EntityManager $manager, $stripeApiKey)
+    {
+        $this->manager = $manager;
+        \Stripe\Stripe::setApiKey($stripeApiKey);
+    }
 
     public function preparerBillets(Commande $commande)
     {
@@ -112,4 +122,27 @@ class CommandeManager
 
         $commande->setTarif($total);
     }
+
+
+    public function fairePayer(Commande $commande, $token)
+    {
+        try {
+            $charge = \Stripe\Charge::create(array(
+                "amount" => $commande->getTarif() * 100, // montant en centimes !
+                "currency" => "eur",
+                "description" => "De l'argent qui rentre chez Anne Laure ;)",
+                "source" => $token,
+            ));
+        } catch (\Exception $e) {
+            return false;
+        }
+
+        $this->manager->persist($commande);
+        $this->manager->flush();
+        
+        
+
+        return true;
+    }
+    
 }
