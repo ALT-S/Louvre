@@ -1,5 +1,23 @@
 {% extends "::layout.html.twig" %}
 
+{% block fil %}
+    <span class="couleur">
+        <a class="{% if app.request.attributes.get('_route') == 'accueil' %}navbar-brand{% endif %}
+        " href="{{ path('accueil') }}">{% trans %} Billetterie {% endtrans %}</a>
+        <i class=" glyphicon glyphicon-arrow-right"></i>
+    {% trans %} Information billet {% endtrans %}
+    </span>
+
+    <span class="gris">
+        <i class=" glyphicon glyphicon-arrow-right"></i>
+        {% trans %} Panier {% endtrans %}
+        <i class=" glyphicon glyphicon-arrow-right"></i>
+        {% trans %} Paiement {% endtrans %}
+        <i class=" glyphicon glyphicon-arrow-right"></i>
+        {% trans %} Confirmation {% endtrans %}
+    </span>
+{% endblock %}
+
 {% block body %}
     <h3>{% trans %}4. Renseignez les informations{% endtrans %}</h3>
     {{ form_start(form, {'method': 'POST'}) }}

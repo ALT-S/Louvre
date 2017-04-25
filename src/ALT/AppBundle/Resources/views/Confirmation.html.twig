@@ -1,8 +1,23 @@
 {% extends "::layout.html.twig" %}
 
+{% block fil %}
+    <span class="couleur">
+    {% trans %} Billetterie {% endtrans %}
+        <i class=" glyphicon glyphicon-arrow-right"></i>
+        {% trans %} Information billet {% endtrans %}
+        <i class=" glyphicon glyphicon-arrow-right"></i>
+        {% trans %} Panier {% endtrans %}
+        <i class=" glyphicon glyphicon-arrow-right"></i>
+        {% trans %} Paiement {% endtrans %}
+        <i class=" glyphicon glyphicon-arrow-right"></i>
+        {% trans %} Confirmation {% endtrans %}
+     </span>
+
+{% endblock %}
+
 {% block body %}
 
-    <h2>{% if commande.tarif == 0%}Votre commande a bien été enregistrée {% else %}Votre paiement a bien été effectué ! {% endif %}</h2>
+    <h2>{% if commande.tarif == 0 %}Votre commande a bien été enregistrée {% else %}Votre paiement a bien été effectué ! {% endif %}</h2>
 
     <p>Vous receverez votre confirmation avec vos billets par mail, à l'adresse suivante : {{ commande.email }}</p>
 
