@@ -70,7 +70,7 @@
         {{ form_errors(form.nbBillets) }}
 
         <div class="col-lg-5">
-            {{ form_widget(form.nbBillets) }}
+            {{ form_widget(form.nbBillets, {attr: {step:1, min:1}}) }}
         </div>
 
         <input class="bouton" type="submit" value="{% trans %}Suivant{% endtrans %}"/>

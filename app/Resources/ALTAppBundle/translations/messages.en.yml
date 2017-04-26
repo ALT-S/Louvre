@@ -230,3 +230,13 @@ Pays: Country
 'Tarif reduit': 'Reduced price'
 Suivant: Next
 'Veuillez saisir vos informations bancaire :': 'Please enter your bank details:'
+'Votre commande a bien été effectuée !': 'Your order has been made !'
+'Voici le récapitulatif de votre commande :': 'Here is the summary of your order:'
+'CODE DE RESERVATION': 'BOOKING CODE'
+'Date de la facturation :': 'Date of billing :'
+'N° de transaction :': 'Transaction Number:'
+'Statut de la transaction :': 'Status of transaction :'
+'VOS BILLETS :': 'YOUR TICKETS :'
+OUI: YES
+'<strong>Attention :</strong> il sera nécessaire de présenter sa carte d’étudiant, militaire ou équivalent lors de l’entrée pour prouver qu’on bénéficie bien du tarif réduit.)': '<Strong> Attention: </ strong> It will be necessary to present your student card, military or equivalent at the entrance to prove that you are benefiting from the reduced rate.)'
+NON: NO
