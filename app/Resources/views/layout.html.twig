@@ -27,6 +27,13 @@
             <h1>{% trans %}Musée du Louvre{% endtrans %}</h1>
 
             <div class="menu">
+                <div class="langue">
+                {% if app.request.locale != 'en' %}
+                <a href="?_locale=en"> <img alt="Flag" class="drapeau" src= {{ asset('image/drapeau-royaume-uni.jpg') }}>English</a>
+                {% elseif app.request.locale != 'fr' %}
+                <a href="?_locale=fr"><img alt="Drapeau" class="drapeau" src= {{ asset('image/drapeau-france.jpg') }}>Français</a>
+                {% endif %}
+                </div>
                 <h4>{% trans %}Menu{% endtrans %}</h4>
                 <ul class="nav nav-pills nav-stacked">
                     <li>

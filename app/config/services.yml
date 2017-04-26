@@ -25,3 +25,9 @@ services:
     app.manager.mail:
          class: ALT\AppBundle\Manager\MailManager
          arguments: ["@templating.engine.twig", "%mailer_user%", "@swiftmailer.mailer"]
+
+    app.locale_listener:
+        class: ALT\AppBundle\Listener\LocaleListener
+        arguments: ['%kernel.default_locale%']
+        tags:
+            - { name: kernel.event_subscriber }
