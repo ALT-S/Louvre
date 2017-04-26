@@ -4,9 +4,8 @@
 
     <div class="texte">
         <p>
-            {% trans %}
-            Pour commander, vous devez sélectionner :
-        <ul>
+            {% trans %}Pour commander, vous devez sélectionner :{% endtrans %}
+        {% trans %}<ul>
             <li>
                 Remplir votre adresse mail
             </li>
@@ -19,9 +18,9 @@
             <li>
                 Le nombre de billet
             </li>
-        </ul>
-        Puis suivre les indications données
-        {% endtrans %}</p>
+        </ul>{% endtrans %}
+        {% trans %}Puis suivre les indications données{% endtrans %}
+        </p>
     </div>
 
     <div class="formBillet col-sm-12">
@@ -74,7 +73,7 @@
             {{ form_widget(form.nbBillets) }}
         </div>
 
-        <input class="bouton" type="submit" value="Envoyer"/>
+        <input class="bouton" type="submit" value="{% trans %}Suivant{% endtrans %}"/>
         {{ form_rest(form) }}
 
         {{ form_end(form) }}

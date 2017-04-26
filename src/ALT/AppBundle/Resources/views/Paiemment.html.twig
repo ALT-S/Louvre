@@ -22,6 +22,10 @@
 
 {% block body %}
 
+        <p class="paiement">{% trans %}
+            Veuillez saisir vos informations bancaire :{% endtrans %}
+        </p>
+
     <form method="post" id="payment-form">
         <div class="form-row">
             <label for="card-element">
@@ -35,7 +39,7 @@
             <div id="card-errors"></div>
         </div>
 
-        <button>{% trans %}Paiement{% endtrans %}</button>
+        <button class="btsPaiement">{% trans %}Paiement{% endtrans %}</button>
     </form>
 
 
