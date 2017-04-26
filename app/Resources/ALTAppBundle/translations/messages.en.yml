@@ -157,7 +157,7 @@
 '14 - Droit applicable - règlement des litiges': '14 - Applicable Law - Dispute Resolution'
 'Les présentes conditions générales de vente sont régies par la loi française.': 'These general conditions of sale are governed by French law.'
 "En cas de litige, les tribunaux de Paris sont seuls compétents, après\n            épuisement des\n            voies\n            de recours\n            amiables.": 'In the event of a dispute, only the courts of Paris are competent, after the exhaustion of amicable remedies.'
-"A Paris,</br>\n        Jean-Luc MARTINEZ</br>\n        Président-directeur de l'Etablissement Public du Musée du Louvre": "In Paris,</br>\n        Jean-Luc MARTINEZ</br>\n        President and Director of the Public Establishment of the Louvre Museum"
+"A Paris,</br>\n        Jean-Luc MARTINEZ</br>\n        Président-directeur de l'Etablissement Public du Musée du Louvre": 'In Paris,<br>        Jean-Luc MARTINEZ<br>        President and Director of the Public Establishment of the Louvre Museum'
 '5. Vos coordonnées': '5. Your contact details'
 '4. Renseignez les informations': '4. Fill in the information'
 'BILLET N°': 'TICKET N °'
@@ -176,7 +176,7 @@
 'Tarif du billet :': 'Ticket price :'
 'Montant de votre commande :': 'Amount of your order :'
 'Retour à la sélection des billets': 'Back to ticket selection'
-Valider: Validate
+Valider: Checkout
 Tarifs: Prices
 '<strong>Tarif « normal » : </strong> à partir de 12 ans à 16 €': '<strong>«Normal» rate:  </strong> from 12 years old to 16 €'
 "<strong>Tarif « enfant » : </strong> à partir de 4 ans et jusqu’à 12 ans, à 8 € (l’entrée\n                est gratuite\n                pour les enfants de moins\n                de 4 ans)": '<strong>« Child » rate: </strong> from 4 years old and up to 12 years old, at 8 € (admission is free for children under 4 years old)'
@@ -188,8 +188,8 @@ Demi-Journée: 'Half day'
 Journée: Day
 'Type de la visite': 'Type of visit'
 'Nombre de billets': 'Number of tickets'
-"<strong>Voici un récapitulatif de votre commande. Merci de vérifier la date et le nombre de billets pour chaque\n            offre sélectionnée.</strong></p>\n        <ul>\n            <li> Pour modifier votre commande, appuyez sur le bouton retour à la sélection des billets</li>\n            <li> Pour finaliser votre commande, appuyez sur le bouton «Valider».</li></ul>": '<Strong> Here is a summary of your order. Please check the date and number of tickets for each selected offer. </strong> </p> <ul> <li> To change your order, press the return to ticket selection button </li> <li> To finalize your order, press the "OK" button. </li> </ul>'
-"<strong>Voici un récapitulatif de votre commande. Merci de vérifier la date et le nombre de billets pour\n                chaque\n                offre sélectionnée.</strong></p>\n        <ul>\n            <li> Pour modifier votre commande, appuyez sur le bouton retour à la sélection des billets</li>\n            <li> Pour finaliser votre commande, appuyez sur le bouton «Valider».</li>\n        </ul>": '<Strong> Here is a summary of your order. Please check the date and number of tickets for each selected offer. </strong> </p> <ul> <li> To change your order, press the return to ticket selection button </li> <li> To finalize your order, press the "OK" button. </li> </ul>'
+"<strong>Voici un récapitulatif de votre commande. Merci de vérifier la date et le nombre de billets pour chaque\n            offre sélectionnée.</strong></p>\n        <ul>\n            <li> Pour modifier votre commande, appuyez sur le bouton retour à la sélection des billets</li>\n            <li> Pour finaliser votre commande, appuyez sur le bouton «Valider».</li></ul>": '<Strong> Here is a summary of your order. Please check the date and number of tickets for each selected offer. </strong> </p> <ul> <li> To change your order, press the return to ticket selection button </li> <li> To finalize your order, press the "Checkout" button. </li> </ul>'
+"<strong>Voici un récapitulatif de votre commande. Merci de vérifier la date et le nombre de billets pour\n                chaque\n                offre sélectionnée.</strong></p>\n        <ul>\n            <li> Pour modifier votre commande, appuyez sur le bouton retour à la sélection des billets</li>\n            <li> Pour finaliser votre commande, appuyez sur le bouton «Valider».</li>\n        </ul>": '<Strong> Here is a summary of your order. Please check the date and number of tickets for each selected offer. </strong> </p> <ul> <li> To change your order, press the return to ticket selection button </li> <li> To finalize your order, press the "Checkout" button. </li> </ul>'
 "Date de naissance\n                                :": 'Birth date :'
 "Tarif réduit\n                                :": 'Reduced price :'
 "Tarif du billet\n                                :": 'Ticket price :'
@@ -222,4 +222,11 @@ Confirmation: Confirmation
 "Date de naissance\n                            :": 'Birth date :'
 "Tarif réduit\n                            :": 'Reduced price :'
 "Tarif du billet\n                            :": 'Ticket price :'
-"Pour commander, vous devez sélectionner :\n        <ul>\n            <li>\n                Remplir votre adresse mail\n            </li>\n            <li>\n                Le jour de la visite\n            </li>\n            <li>\n                Le type de billet (Journée, Demi-journée…).\n            </li>\n            <li>\n                Le nombre de billet\n            </li>\n        </ul>\n        Puis suivre les indications données": 'To order, you must select: <Ul> <li> Fill your email address </ li>  <Li> The day of the visit </ li> <li> The ticket type (Day, Half Day ...). </ Li> <Li> The number of tickets  n </ li> </ ul> Then follow the indications given'
+'Pour commander, vous devez sélectionner :': 'To order, you must select: '
+"<ul>\n            <li>\n                Remplir votre adresse mail\n            </li>\n            <li>\n                Le jour de la visite\n            </li>\n            <li>\n                Le type de billet (Journée, Demi-journée…).\n            </li>\n            <li>\n                Le nombre de billet\n            </li>\n        </ul>": '<ul> <li> Fill your email address </li>  <li> The day of the visit </li> <li> The ticket type (Day, Half Day ...). </li> <li> The number of tickets  </li> </ul>'
+'Puis suivre les indications données': 'Then follow the indications given'
+Pays: Country
+'Date de naissance': 'Birth date'
+'Tarif reduit': 'Reduced price'
+Suivant: Next
+'Veuillez saisir vos informations bancaire :': 'Please enter your bank details:'

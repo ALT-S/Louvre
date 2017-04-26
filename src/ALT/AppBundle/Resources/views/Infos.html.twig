@@ -30,20 +30,32 @@
 
             <div class="col-sm-9 info ">
 
-                {{ form_row(formBillets.nom) }}
 
-                {{ form_row(formBillets.prenom) }}
+                {{ form_label(formBillets.nom, "Nom") }}
+                {{ form_errors(formBillets.nom) }}
+                {{ form_widget(formBillets.nom) }}
 
-                {{ form_row(formBillets.pays) }}
 
-                {{ form_row(formBillets.dateNaissance) }}
+                {{ form_label(formBillets.prenom, "Prénom") }}
+                {{ form_errors(formBillets.prenom) }}
+                {{ form_widget(formBillets.prenom) }}
 
-                {{ form_row(formBillets.tarifReduit) }}
+                {{ form_label(formBillets.pays, "Pays") }}
+                {{ form_errors(formBillets.pays) }}
+                {{ form_widget(formBillets.pays) }}
+
+                {{ form_label(formBillets.dateNaissance, "Date de naissance") }}
+                {{ form_errors(formBillets.dateNaissance) }}
+                {{ form_widget(formBillets.dateNaissance) }}
+
+                {{ form_label(formBillets.tarifReduit, "Tarif réduit") }}
+                {{ form_errors(formBillets.tarifReduit) }}
+                {{ form_widget(formBillets.tarifReduit) }}
 
             </div>
         </div>
     {% endfor %}
-    <div class="boutonInfo"> {{ form_row(form.enregistrer) }} </div>
+    <div class="boutonInfo"> {{ form_row(form.enregistrer, {label: "Suivant"}) }} </div>
 
     {{ form_rest(form) }}
     {{ form_end(form) }}
