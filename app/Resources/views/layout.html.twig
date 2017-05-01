@@ -22,22 +22,20 @@
 
     <div class="row">
 
-        <div class="col-sm-3 sidebar">
-            <img alt="logo louvre" class="logo" src= {{ asset('image/images.jpeg') }}>
-            <h1>{% trans %}Musée du Louvre{% endtrans %}</h1>
+        <div class="navbar-header hidden-md visible-md visible-xs navbar-fixed-top">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
 
-            <div class="menu">
-                <div class="langue">
-                {% if app.request.locale != 'en' %}
-                <a href="?_locale=en"> <img alt="Flag" class="drapeau" src= {{ asset('image/drapeau-royaume-uni.jpg') }}>English</a>
-                {% elseif app.request.locale != 'fr' %}
-                <a href="?_locale=fr"><img alt="Drapeau" class="drapeau" src= {{ asset('image/drapeau-france.jpg') }}>Français</a>
-                {% endif %}
-                </div>
-                <h4>{% trans %}Menu{% endtrans %}</h4>
-                <ul class="nav nav-pills nav-stacked">
+
+            <h4>{% trans %}Menu{% endtrans %}</h4>
+            <div id="navbar" class="collapse navbar-collapse ">
+
+                <ul class="nav nav-pills nav-stacked menu2 ">
                     <li>
-                        <a class="{% if app.request.attributes.get('_route') == 'accueil' %}navbar-brand{% endif %} "
+                        <a class="{% if app.request.attributes.get('_route') == 'accueil' %}navbar-brand accueil {% endif %} "
                            href="{{ path('accueil') }}">{% trans %}Accueil{% endtrans %} <i
                                     class=" glyphicon glyphicon-home"></i> </a>
                     </li>
@@ -53,11 +51,65 @@
                     </li>
 
                     <li>
-                        <a class="{% if app.request.attributes.get('_route') == 'cgv' %}navbar-brand{% endif %}"
+                        <a class="{% if app.request.attributes.get('_route') == 'cgv' %}navbar-brand accueil{% endif %}"
                            href="{{ path('cgv') }}">{% trans %}CGV{% endtrans %}</a>
                     </li>
 
                 </ul>
+                <div class="droite">
+                    {% if app.request.locale != 'en' %}
+                        <a href="?_locale=en"> English <img alt="Flag" class="drapeaubis"
+                                                            src= {{ asset('image/drapeau-royaume-uni.jpg') }}></a>
+                    {% elseif app.request.locale != 'fr' %}
+                        <a href="?_locale=fr">Français <img alt="Drapeau" class="drapeaubis"
+                                                            src= {{ asset('image/drapeau-france.jpg') }}></a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-3 sidebar">
+            <img alt="logo louvre" class="logo" src= {{ asset('image/louvre-pyramids.jpg') }}>
+            <h1>{% trans %}Musée du Louvre{% endtrans %}</h1>
+
+            <div class="menu hidden-xs ">
+                <div id="navbar2" class="collapse navbar-collapse">
+                    <div class="langue">
+                        {% if app.request.locale != 'en' %}
+                            <a href="?_locale=en"> <img alt="Flag" class="drapeau"
+                                                        src= {{ asset('image/drapeau-royaume-uni.jpg') }}>English</a>
+                        {% elseif app.request.locale != 'fr' %}
+                            <a href="?_locale=fr"><img alt="Drapeau" class="drapeau"
+                                                       src= {{ asset('image/drapeau-france.jpg') }}>Français</a>
+                        {% endif %}
+                    </div>
+                    <h4>{% trans %}Menu{% endtrans %}</h4>
+
+
+                    <ul class="nav nav-pills nav-stacked">
+                        <li>
+                            <a class="{% if app.request.attributes.get('_route') == 'accueil' %}navbar-brand  {% endif %} "
+                               href="{{ path('accueil') }}">{% trans %}Accueil{% endtrans %} <i
+                                        class=" glyphicon glyphicon-home"></i> </a>
+                        </li>
+
+                        <li>
+                            <a class="{% if app.request.attributes.get('_route') == 'tarifs' %}navbar-brand{% endif %}"
+                               href="{{ path('tarifs') }}">{% trans %}Tarifs{% endtrans %}</a>
+                        </li>
+
+                        <li>
+                            <a class="{% if app.request.attributes.get('_route') == 'aide' %}navbar-brand{% endif %}"
+                               href="{{ path('aide') }}">{% trans %}Aide/FAQ{% endtrans %}</a>
+                        </li>
+
+                        <li>
+                            <a class="{% if app.request.attributes.get('_route') == 'cgv' %}navbar-brand{% endif %}"
+                               href="{{ path('cgv') }}">{% trans %}CGV{% endtrans %}</a>
+                        </li>
+
+                    </ul>
+                </div>
             </div>
 
         </div><!-- /.sidebar -->
