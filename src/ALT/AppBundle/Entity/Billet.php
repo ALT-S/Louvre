@@ -33,7 +33,7 @@ class Billet
      *
      * @ORM\Column(name="nom", type="string", length=255)
      * @Assert\NotBlank()
-     * @Assert\Length(min=3)
+     * @Assert\Length(min=2)
      */
     private $nom;
 
@@ -42,7 +42,7 @@ class Billet
      *
      * @ORM\Column(name="prenom", type="string", length=255)
      * @Assert\NotBlank()
-     * @Assert\Length(min=3)
+     * @Assert\Length(min=2)
      */
     private $prenom;
 
@@ -61,6 +61,7 @@ class Billet
      * @ORM\Column(name="dateNaissance", type="date")
      * @Assert\NotBlank()
      * @Assert\Date()
+     * @Assert\LessThan("today")
      */
     private $dateNaissance;
     
