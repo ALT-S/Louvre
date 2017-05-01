@@ -20,7 +20,7 @@ services:
 
     app.manager.commande:
         class: ALT\AppBundle\Manager\CommandeManager
-        arguments: ["@doctrine.orm.entity_manager", "%stripe_api%"]
+        arguments: ["@doctrine.orm.entity_manager", "@session", "%stripe_api%"]
 
     app.manager.mail:
          class: ALT\AppBundle\Manager\MailManager
@@ -29,5 +29,11 @@ services:
     app.locale_listener:
         class: ALT\AppBundle\Listener\LocaleListener
         arguments: ['%kernel.default_locale%']
+        tags:
+            - { name: kernel.event_subscriber }
+
+    app.commande_listener:
+        class: ALT\AppBundle\Listener\CommandeNotFoundListener
+        arguments: [ "@router" ]
         tags:
             - { name: kernel.event_subscriber }

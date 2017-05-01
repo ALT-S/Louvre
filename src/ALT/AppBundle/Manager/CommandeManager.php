@@ -11,7 +11,10 @@ namespace ALT\AppBundle\Manager;
 
 use ALT\AppBundle\Entity\Billet;
 use ALT\AppBundle\Entity\Commande;
+use ALT\AppBundle\Exception\CommandeNotFoundException;
 use Doctrine\ORM\EntityManager;
+use Symfony\Component\BrowserKit\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class CommandeManager
 {
@@ -24,9 +27,13 @@ class CommandeManager
     /** @var EntityManager */
     private $manager;
 
-    public function __construct(EntityManager $manager, $stripeApiKey)
+    /** @var Session */
+    private $session;
+
+    public function __construct(EntityManager $manager, Session $session, $stripeApiKey)
     {
         $this->manager = $manager;
+        $this->session = $session;
         \Stripe\Stripe::setApiKey($stripeApiKey);
     }
 
@@ -139,10 +146,44 @@ class CommandeManager
 
         $this->manager->persist($commande);
         $this->manager->flush();
-        
-        
-
+              
         return true;
     }
-    
+
+    public function faireGratuit(Commande $commande)
+    {
+        $this->manager->persist($commande);
+        $this->manager->flush();
+    }
+
+    public function getCommande()
+    {
+        $commande = $this->session->get('commande');
+        if ($commande == null) { // Si l'objet n'existe pas, on retourne sur la page d'accueil !!
+            throw new CommandeNotFoundException();
+        }
+
+        return $commande;
+    }
+
+    public function getCommandeOuCreerUneNouvelle()
+    {
+        try {
+            $commande = $this->getCommande();
+        } catch (CommandeNotFoundException $e) {
+            $commande = new Commande(); // Si la commande n'est pas en session, on en créer une nouvelle
+        }
+
+        return $commande;
+    }
+
+    public function stockEnSession(Commande $commande)
+    {
+        $this->session->set('commande', $commande);
+    }
+
+    public function retireDeLaSession()
+    {
+        $this->session->set('commande', null);
+    }
 }

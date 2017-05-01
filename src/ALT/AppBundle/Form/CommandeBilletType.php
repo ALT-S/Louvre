@@ -38,7 +38,7 @@ class CommandeBilletType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'ALT\AppBundle\Entity\Commande'
+            'data_class' => 'ALT\AppBundle\Entity\Commande',
         ));
     }
 
