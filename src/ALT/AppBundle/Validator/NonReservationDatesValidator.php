@@ -9,6 +9,12 @@ use Symfony\Component\Validator\ConstraintValidator;
 
 class NonReservationDatesValidator extends ConstraintValidator
 {
+
+    static public function getJoursFermes()
+    {
+        return ['25-12', '01-05', '01-11'];
+
+    }
     /**
      * {@inheritdoc}
      */
@@ -16,14 +22,8 @@ class NonReservationDatesValidator extends ConstraintValidator
     {
 
         $jourmois = $value->format('d-m');
-        switch ($jourmois) {
-            case '25-12':
-            case '01-05':
-            case '01-11':
-                // ajout violation de contrainte
-                $this->context->addViolation($constraint->message);
-
-                break;
+        if (in_array($jourmois, self::getJoursFermes())) {
+            $this->context->addViolation($constraint->message);
         }
 
         // vérification dimanche & mardi
@@ -39,7 +39,6 @@ class NonReservationDatesValidator extends ConstraintValidator
         $now->setTime(0,0,0);
 
         if ($value < $now) {
-            var_dump('lol');
             $this->context->addViolation($constraint->message);
         }
 
