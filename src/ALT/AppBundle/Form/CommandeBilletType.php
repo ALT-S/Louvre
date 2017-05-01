@@ -27,9 +27,7 @@ class CommandeBilletType extends AbstractType
                 'entry_type'   => BilletType::class,
                 'allow_add' => true,
                 'allow_delete' => true
-            ))
-            ->add('enregistrer', SubmitType::class)
-        ;
+            ));
     }
 
     /**

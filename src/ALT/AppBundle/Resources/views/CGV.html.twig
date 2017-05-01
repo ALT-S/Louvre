@@ -1,6 +1,15 @@
 {% extends "::layout.html.twig" %}
 
 {% block body %}
+
+    {% if app.session.get('commande') is not null %}
+        <div class="cgvbt">
+            <a class="btn btn-default achat" href="{{ path('panier') }}">
+                <i class="glyphicon glyphicon-shopping-cart"></i>
+                {% trans %} Retour au pannier{% endtrans %}
+            </a>
+        </div>
+    {% endif %}
     <h3 id="index">{% trans %}Conditions Générales de Vente{% endtrans %}</h3>
 
     <p> {% trans %}Billets d'entrée pour les visiteurs individuels - Vente en ligne{% endtrans %}</p>
@@ -188,32 +197,32 @@
             légitime.
             Il sera refusé
             l’accès à la prestation à toute autre personne se présentant ultérieurement avec une copie du billet.
-            {% endtrans  %}</li>
+            {% endtrans %}</li>
         <p class="col-sm-1">4.1.6</p>
         <li class="none col-sm-11">{% trans %}Le visiteur doit conserver son billet par devers lui durant toute la durée
             de la
             prestation.
-            {% endtrans  %}</li>
+            {% endtrans %}</li>
         <p class="col-sm-1"> 4.1.7 </p>
         <li class="none col-sm-11">{% trans %}Toute sortie du hall Napoléon ou d’une aile du musée est définitive. Un
             même
             billet
             d’entrée donne un
             accès unique aux collections permanentes et aux expositions temporaires.
-            {% endtrans  %}</li>
+            {% endtrans %}</li>
         <p class="col-sm-1">4.1.8</p>
         <li class="none col-sm-11">{% trans %}Toute personne qui reproduirait illégalement un billet et/ou utiliserait
             un
             billet
             contrefait s’exposerait
             à des poursuites pénales.
-            {% endtrans  %}</li>
+            {% endtrans %}</li>
         <p class="col-sm-1">4.1.9 </p>
         <li class="none col-sm-11">{% trans %}L’EPML décline toute responsabilité en cas de perte ou de vol ou
             d’utilisation de
             copies à l’insu de
             l’acheteur, y compris dans l’enceinte du musée.
-            {% endtrans  %}</li>
+            {% endtrans %}</li>
 
         <p class="col-sm-1"> 4.1.10</p>
         <li class="none col-sm-11">{% trans %} En cas de non-respect d’une des conditions énoncées au présent article,
@@ -221,10 +230,10 @@
             se
             réserve le droit de
             refuser l’accès à la prestation concernée.
-            {% endtrans  %}</li>
+            {% endtrans %}</li>
         <p class="col-sm-1 bis"> 4.2 </p>
         <li class="none col-sm-11 bis">{% trans %}Mesures de sécurité
-            {% endtrans  %}</li>
+            {% endtrans %}</li>
         <p class="col-sm-1">4.2.1</p>
         <li class="none col-sm-11">{% trans %}Afin d’assurer la sécurité des visiteurs, le musée du Louvre applique les
             mesures
@@ -232,7 +241,7 @@
             le gouvernement pour les administrations publiques. Toutes les personnes doivent se prêter aux contrôles
             de
             sécurité.
-            {% endtrans  %}</li>
+            {% endtrans %}</li>
 
         <p class="col-sm-1">4.2.2 </p>
         <li class="none col-sm-11">{% trans %}Les valises et sacs de grande contenance sont interdits. Seuls les bagages
@@ -241,11 +250,11 @@
             maximales de 55cm x 35cm x 20cm sont autorisés dans les espaces d’accueil. Ils ne sont pas admis dans
             les
             collections et doivent impérativement être déposés aux vestiaires après avoir été contrôlés.
-            {% endtrans  %}</li>
+            {% endtrans %}</li>
 
-        <p class="align"><a href="#index">{% trans %}Haut de page{% endtrans  %}</a></p>
+        <p class="align"><a href="#index">{% trans %}Haut de page{% endtrans %}</a></p>
 
-        <h6 id="5">{% trans %}5 - Modalités de commande{% endtrans  %}</h6>
+        <h6 id="5">{% trans %}5 - Modalités de commande{% endtrans %}</h6>
 
         <p class="col-sm-1"> 5.1</p>
         <li class="none col-sm-11">{% trans %}L’acheteur effectue son achat de billet en ligne comme suit :
@@ -262,7 +271,7 @@
             Régler la commande par carte bancaire en s’identifiant, le cas échéant, selon la norme 3D-Secure par la
             saisie
             du code transmis par sa banque.
-            {% endtrans  %}</li>
+            {% endtrans %}</li>
 
         <p class="col-sm-1">5.2 </p>
         <li class="none col-sm-11">{% trans %}La page "Votre panier" permet de vérifier le contenu de la commande en
@@ -270,44 +279,44 @@
             Tant
             que le paiement n’a pas
             été enregistré, le contenu de la commande peut être modifié.
-            {% endtrans  %}</li>
+            {% endtrans %}</li>
         <p class="col-sm-1">5.3 </p>
         <li class="none col-sm-11">{% trans %}Si le paiement est accepté par le Centre de Traitement Commerçant (CTC),
             la
             confirmation de commande
             s’affiche. L’acheteur reçoit un courriel de confirmation de commande et un courriel de justificatif de
             paiement.
-            {% endtrans  %}</li>
+            {% endtrans %}</li>
         <p class="col-sm-1">5.4 </p>
         <li class="none col-sm-11">{% trans %}A partir du lien figurant dans le courriel de confirmation, l’acheteur
             génère en
             PDF
             son (ses) billet(s) en
             indiquant les prénom(s) et nom(s) du (des) porteur(s) du (des) billet(s) puis le(s) imprime.
-            {% endtrans  %}</li>
+            {% endtrans %}</li>
         <p class="col-sm-1"> 5.5 </p>
         <li class="none col-sm-11">{% trans %}L’EPML se réserve le droit de refuser toute commande d'un client qui
             n’observerait
             pas ses conditions
             générales de vente.
-            {% endtrans  %}</li>
+            {% endtrans %}</li>
 
-        <p class="align"><a href="#index">{% trans %}Haut de page{% endtrans  %}</a></p>
+        <p class="align"><a href="#index">{% trans %}Haut de page{% endtrans %}</a></p>
 
-        <h6 id="6">{% trans %}6 - Tarifs{% endtrans  %}</h6>
+        <h6 id="6">{% trans %}6 - Tarifs{% endtrans %}</h6>
 
         <p class="col-sm-1">6.1 </p>
         <li class="none col-sm-11">{% trans %}Les tarifs applicables sont ceux en vigueur au moment de la commande.
-            {% endtrans  %}</li>
+            {% endtrans %}</li>
         <p class="col-sm-1">6.2 </p>
         <li class="none col-sm-11">{% trans %}Les tarifs et les cas d’exonération sont consultables sur le site de vente
             en
             ligne
             de l’EPML.
-            {% endtrans  %}</li>
+            {% endtrans %}</li>
         <p class="col-sm-1"> 6.3 </p>
         <li class="none col-sm-11">{% trans %}L’EPML se réserve le droit de modifier les prix à tout moment.
-            {% endtrans  %}</li>
+            {% endtrans %}</li>
         <p class="col-sm-1">6.4 </p>
         <li class="none col-sm-11">{% trans %}Le visiteur susceptible de bénéficier d'une exonération devra présenter
             aux
@@ -316,11 +325,11 @@
             prestations, le justificatif afférent en cours de validité, nominatif et avec photographie. En cas de
             non
             présentation ou de non-conformité du justificatif, l’accès à la prestation sera refusé.
-            {% endtrans  %}</li>
+            {% endtrans %}</li>
 
-        <p class="align"><a href="#index">{% trans %}Haut de page{% endtrans  %}</a></p>
+        <p class="align"><a href="#index">{% trans %}Haut de page{% endtrans %}</a></p>
 
-        <h6 id="7">{% trans %}7 - Modalités de paiement{% endtrans  %}</h6>
+        <h6 id="7">{% trans %}7 - Modalités de paiement{% endtrans %}</h6>
 
         <p class="col-sm-1"> 7.1 </p>
         <li class="none col-sm-11">{% trans %}Le paiement des billets par le client s'effectue par carte bancaire. Les
@@ -328,7 +337,7 @@
             de
             paiement acceptées sur le
             site « www.ticketlouvre.fr » sont : Carte Bleue, Visa, Mastercard, E-carte bleue.
-            {% endtrans  %}</li>
+            {% endtrans %}</li>
         <p class="col-sm-1"> 7.2 </p>
         <li class="none col-sm-11">{% trans %}Le paiement est validé selon la Norme 3D-secure et après acceptation de la
             transaction par le Centre de
@@ -338,30 +347,30 @@
             la vérification de la liste des cartes de paiement volées ou perdues. En cas de refus par le CTC, la
             commande
             est annulée.
-            {% endtrans  %}</li>
+            {% endtrans %}</li>
         <p class="col-sm-1">7.3 </p>
         <li class="none col-sm-11">{% trans %}Dès l’acceptation du paiement, l’acheteur reçoit deux courriels, l’un
             récapitulant sa
             commande, l’autre
             constituant le ticket CB client (à conserver et à produire en cas de contestation)
-            {% endtrans  %}</li>
+            {% endtrans %}</li>
         <p class="col-sm-1"> 7.4 </p>
         <li class="none col-sm-11">{% trans %}Conformément à la réglementation bancaire en vigueur, l’archivage des
             données
             bancaires est de quinze (15)
             mois à compter de la date de transaction. A la suite de ce délai, les données sont détruites.
-            {% endtrans  %}</li>
+            {% endtrans %}</li>
 
-        <p class="align"><a href="#index">{% trans %}Haut de page{% endtrans  %}</a></p>
+        <p class="align"><a href="#index">{% trans %}Haut de page{% endtrans %}</a></p>
 
-        <h6 id="8">{% trans %} 8 - Sécurisation des paiements{% endtrans  %}</h6>
+        <h6 id="8">{% trans %} 8 - Sécurisation des paiements{% endtrans %}</h6>
 
         <p class="col-sm-1">8.1 </p>
         <li class="none col-sm-11">{% trans %}Le site de paiement de l'EPML utilise la plate de forme d'encaissement
             STRIPE qui
             répond à la norme
             3D-secure.
-            {% endtrans  %} </li>
+            {% endtrans %} </li>
 
         <p class="col-sm-1">8.2 </p>
         <li class="none col-sm-11">{% trans %}3D-Secure est un protocole de sécurité proposé par VISA, MasterCard, le
@@ -371,11 +380,11 @@
             d'augmenter le niveau de sécurité des paiements à distance, par l'ajout d'une étape d'authentification
             assurée
             par la banque du porteur.
-            {% endtrans  %}</li>
+            {% endtrans %}</li>
 
-        <p class="align"><a href="#index">{% trans %}Haut de page{% endtrans  %}</a></p>
+        <p class="align"><a href="#index">{% trans %}Haut de page{% endtrans %}</a></p>
 
-        <h6 id="9">{% trans %}9 - Traitement des données personnelles{% endtrans  %}</h6>
+        <h6 id="9">{% trans %}9 - Traitement des données personnelles{% endtrans %}</h6>
 
         <p class="col-sm-1">9.1 </p>
         <li class="none col-sm-11">{% trans %}Seules sont demandées à l’acheteur les informations et données nécessaires
@@ -384,14 +393,14 @@
             finalisation de sa transaction, à son information et à ses relations avec l’EPML. Ces données sont
             conservées
             dans la base de l’EPML.
-            {% endtrans  %}</li>
+            {% endtrans %}</li>
 
         <p class="col-sm-1">9.2 </p>
         <li class="none col-sm-11">{% trans %}Le traitement automatisé des informations concernant les acheteurs a fait
             l’objet
             d’une déclaration à la
             CNIL par l’EPML.
-            {% endtrans  %}</li>
+            {% endtrans %}</li>
 
         <p class="col-sm-1"> 9.3 </p>
         <li class="none col-sm-11">{% trans %}En application des articles 38, 39 et 40 de la loi n° 78-17 du 6 janvier
@@ -405,17 +414,17 @@
             l’ayant cause. Si l’acheteur souhaite exercer ce droit, il peut s’adresser à l’EPML par courrier à
             l'adresse
             ci-après : musée du Louvre, DRE « Le Louvre et Vous », 75058, Paris cedex 01.
-            {% endtrans  %}</li>
+            {% endtrans %}</li>
 
-        <p class="align"><a href="#index">{% trans %}Haut de page{% endtrans  %}</a></p>
+        <p class="align"><a href="#index">{% trans %}Haut de page{% endtrans %}</a></p>
 
-        <h6 id="10"> {% trans %}10 - Cookies{% endtrans  %}</h6>
+        <h6 id="10"> {% trans %}10 - Cookies{% endtrans %}</h6>
 
         <p class="col-sm-1"> 10.1 </p>
         <li class="none col-sm-11">{% trans %}Le site de l'EPML utilise des cookies :
             « de session », nécessaires à la commande en ligne et détruits dès retrait du site ;
             « disque », pour collecter des données anonymes utilisées à des fins statistiques.
-            {% endtrans  %}</li>
+            {% endtrans %}</li>
         <p class="col-sm-1">10.2 </p>
         <li class="none col-sm-11">{% trans %}L’utilisation des cookies peut être désactivée par la sélection par
             l’acheteur
@@ -427,11 +436,11 @@
             expressément
             au
             traitement de ses données nominatives dans les conditions et pour les finalités décrites ci-dessus.
-            {% endtrans  %}</li>
+            {% endtrans %}</li>
 
-        <p class="align"><a href="#index">{% trans %}Haut de page{% endtrans  %}</a></p>
+        <p class="align"><a href="#index">{% trans %}Haut de page{% endtrans %}</a></p>
 
-        <h6 id="11">{% trans %} 11 - Traitement des demandes de remboursement{% endtrans  %}</h6>
+        <h6 id="11">{% trans %} 11 - Traitement des demandes de remboursement{% endtrans %}</h6>
 
         <p class="col-sm-1">11.1 </p>
         <li class="none col-sm-11">{% trans %}a vente de billets d’entrée pour un musée ou de prestations liées à
@@ -441,26 +450,26 @@
             aucun
             droit
             au délai de rétractation.
-            {% endtrans  %}</li>
+            {% endtrans %}</li>
 
         <p class="col-sm-1">11.2 </p>
         <li class="none col-sm-11">{% trans %}Les billets sont incessibles, non échangeables et ne peuvent être
             revendus.
-            {% endtrans  %}</li>
+            {% endtrans %}</li>
         <p class="col-sm-1">11.3 </p>
         <li class="none col-sm-11">{% trans %}Les date, heure et nom du porteur du billet sont modifiables jusqu’à la
             date et
             l’heure programmées de la
             visite. Les modifications peuvent être effectuées à distance, par courriel adressé à
             assistance-billetterie@louvre.fr, ou sur place au comptoir d’assistance billetterie.
-            {% endtrans  %}</li>
+            {% endtrans %}</li>
         <p class="col-sm-1">11.4 </p>
         <li class="none col-sm-11">{% trans %}En cas d’erreur de bonne foi d’un achat de billet pour un visiteur
             bénéficiant
             d’une
             exonération un droit à
             remboursement est ouvert.
-            {% endtrans  %}</li>
+            {% endtrans %}</li>
 
         <p class="col-sm-1">11.5 </p>
         <li class="none col-sm-11">{% trans %}Les demandes doivent être adressées à assistance-billetterie@louvre.fr ou
@@ -470,7 +479,7 @@
             correspondante
             et,
             pour les remboursements, des coordonnées bancaires (Relevé d’Identité Bancaire).
-            {% endtrans  %}</li>
+            {% endtrans %}</li>
         <p class="col-sm-1"> 11.6 </p>
         <li class="none col-sm-11">{% trans %}En cas d’annulation ou de modification de la prestation correspondante par
             l’EPML
@@ -486,11 +495,11 @@
             assistance-billetterie@louvre.fr ou par courrier adressé à : Musée du Louvre - Assistance Billetterie -
             75058
             Paris cedex 01.
-            {% endtrans  %}</li>
+            {% endtrans %}</li>
 
-        <p class="align"><a href="#index">{% trans %}Haut de page{% endtrans  %}</a></p>
+        <p class="align"><a href="#index">{% trans %}Haut de page{% endtrans %}</a></p>
 
-        <h6 id="12">{% trans %}12 - Contestation d’un débit bancaire{% endtrans  %}</h6>
+        <h6 id="12">{% trans %}12 - Contestation d’un débit bancaire{% endtrans %}</h6>
 
         <p class="col-sm-1"> 12.1 </p>
         <li class="none col-sm-11">{% trans %}En cas de contestation en raison du vol ou de la perte de la carte de
@@ -499,7 +508,7 @@
             immédiatement opposition en appelant le numéro indiqué par l’établissement bancaire émetteur de la carte
             de
             paiement. En cas de vol, il doit faire un dépôt de plainte auprès des autorités compétentes.
-            {% endtrans  %}</li>
+            {% endtrans %}</li>
         <p class="col-sm-1">12.2 </p>
         <li class="none col-sm-11">{% trans %}En cas de contestation en raison d’anomalies constatées par l’acheteur sur
             son
@@ -516,11 +525,11 @@
             réseau bancaire à l’EPML. Dans le cas d’une réclamation justifiée, l’ordre est donné au teneur de compte
             de
             l’EPML d’effectuer le remboursement par un crédit sur le compte bancaire de l’acheteur.
-            {% endtrans  %}</li>
+            {% endtrans %}</li>
 
-        <p class="align"><a href="#index">{% trans %}Haut de page{% endtrans  %}</a></p>
+        <p class="align"><a href="#index">{% trans %}Haut de page{% endtrans %}</a></p>
 
-        <h6 id="13">{% trans %}13 - Responsabilité{% endtrans  %}</h6>
+        <h6 id="13">{% trans %}13 - Responsabilité{% endtrans %}</h6>
 
         <p class="col-sm-1">13.1 </p>
         <li class="none col-sm-11">{% trans %}Ni l’EPML, ni l’acheteur ne sauraient être tenus responsables de toute
@@ -532,7 +541,7 @@
             terre,
             les
             tempêtes et inondations.
-            {% endtrans  %}</li>
+            {% endtrans %}</li>
 
         <p class="col-sm-1">13.2 </p>
         <li class="none col-sm-11">{% trans %}Sauf dysfonctionnement du site « www.ticketlouvre.fr » qui lui serait
@@ -545,32 +554,32 @@
             télécommunications
             y
             compris des réseaux et notamment d'Internet.
-            {% endtrans  %}</li>
+            {% endtrans %}</li>
         <p class="col-sm-1">13.3 </p>
         <li class="none col-sm-11">{% trans %}L’EPML ne pourrait être tenu responsable de l'usage des billets achetés,
             l’acheteur
             étant seul responsable
             de leur utilisation par lui-même ou par un tiers.
-            {% endtrans  %}</li>
+            {% endtrans %}</li>
 
-        <p class="align"><a href="#index">{% trans %}Haut de page{% endtrans  %}</a></p>
+        <p class="align"><a href="#index">{% trans %}Haut de page{% endtrans %}</a></p>
 
-        <h6 id="14"> {% trans %}14 - Droit applicable - règlement des litiges{% endtrans  %}</h6>
+        <h6 id="14"> {% trans %}14 - Droit applicable - règlement des litiges{% endtrans %}</h6>
 
         <p class="col-sm-12">{% trans %}Les présentes conditions générales de vente sont régies par la loi française.
-            {% endtrans  %}</p>
+            {% endtrans %}</p>
 
         <p class="col-sm-12">{% trans %} En cas de litige, les tribunaux de Paris sont seuls compétents, après
             épuisement des
             voies
             de recours
             amiables.
-            {% endtrans  %}</p>
+            {% endtrans %}</p>
 
-        <p class="align"><a href="#index">{% trans %}Haut de page{% endtrans  %}</a></p>
+        <p class="align"><a href="#index">{% trans %}Haut de page{% endtrans %}</a></p>
     </ul>
 
     <p class="fin"> {% trans %}A Paris,</br>
         Jean-Luc MARTINEZ</br>
-        Président-directeur de l'Etablissement Public du Musée du Louvre{% endtrans  %}</p>
+        Président-directeur de l'Etablissement Public du Musée du Louvre{% endtrans %}</p>
 {% endblock %}
