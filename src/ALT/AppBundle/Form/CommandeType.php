@@ -3,6 +3,7 @@
 namespace ALT\AppBundle\Form;
 
 use ALT\AppBundle\Entity\Commande;
+use ALT\AppBundle\Validator\NonReservationDatesValidator;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -19,11 +20,17 @@ class CommandeType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $joursFermes = $this->getJoursFermes();
+
+
         $builder
             ->add('dateVisite', DateType::class, array(
                 'widget' => 'single_text',
                 'attr' => ['class' => 'js-datepicker',
-                    'data-date-format' => 'dd-mm-yyyy'],
+                    'data-date-format' => 'dd-mm-yyyy',
+                    'data-date-days-of-week-disabled' => '02',
+                    'data-date-dates-disabled' => '['.implode(', ', $joursFermes).']'
+                ],
                 'html5' => false,
                 'format' => 'dd-MM-yyyy',
             ))
@@ -58,5 +65,19 @@ class CommandeType extends AbstractType
         return 'alt_appbundle_commande';
     }
 
+    private function getJoursFermes()
+    {
+        $joursFermes = NonReservationDatesValidator::getJoursFermes();
+
+        $year = date('Y');
+        $jours = [];
+        for ($i = 0; $i < 10; $i++) {
+            foreach ($joursFermes as $j) {
+                $jours[] = '"'.$j.'-'.($year + $i).'"';
+            }
+        }
+
+        return $jours;
+    }
 
 }
