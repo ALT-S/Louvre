@@ -36,9 +36,8 @@
     <p style=" margin-bottom: 43px;"><strong>{% trans %}Date de la visite :{% endtrans %}</strong> {{ commande.dateVisite|date('d/m/Y') }}</p>
 
     <p><strong>{% trans %}Date de la commande :{% endtrans %}</strong> {{ commande.dateCommande|date('d/m/Y') }}</p>
-    <p><strong> {% trans %}Date de la facturation : {% endtrans %}</strong>{{ commande.dateFacturation }} </p>
+    <p><strong> {% trans %}Date de la facturation : {% endtrans %}</strong>{{ commande.dateFacturation|date('d/m/Y') }} </p>
     <p><strong>{% trans %}N° de transaction : {% endtrans %}</strong>{{ commande.numeroTransaction }}</p>
-    <p style="margin-bottom: 32px;"><strong>{% trans %}Statut de la transaction : {% endtrans %}</strong>{{ commande.statut }}</p>
 
     <hr>
 
