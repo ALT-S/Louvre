@@ -538,3 +538,18 @@ label {
     text-align:left !important;
 }
 
+h2.errorpage{
+    text-align: center;
+}
+
+.fr{
+    margin-top: 45px;
+    font-size: 17px;
+    font-weight: bold;
+    padding-left: 15px;
+}
+
+.url{
+    padding-left: 15px;
+}
+
