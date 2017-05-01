@@ -5,7 +5,7 @@ services:
 
     alt_app.validator.maxBillet:                              # Le nom du service
         class: ALT\AppBundle\Validator\MaxBilletValidator    # La classe du service, ici notre validateur déjà créé
-        arguments: [ "@doctrine.orm.entity_manager"] # Les données qu'on injecte au service : la requête et l'EntityManager
+        arguments: [ "@doctrine.orm.entity_manager", "%limite_max_billet%"] # Les données qu'on injecte au service : la requête et l'EntityManager
         tags:
             - { name: validator.constraint_validator, alias: alt_app_maxBillet }  # C'est avec l'alias qu'on retrouvera le service
 
