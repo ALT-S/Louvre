@@ -22,11 +22,11 @@
     <p>{% trans %}Vous receverez votre confirmation avec vos billets par mail, à l'adresse suivante :{% endtrans %} {{ commande.email }}</p>
 
     <div>
+        <p><strong>{% trans %}Code de réservation :{% endtrans %}</strong> {{ commande.codeReservation }}</p>
         <p><strong>{% trans %}Date de la commande :{% endtrans %}</strong> {{ commande.dateCommande|date('d/m/Y') }}</p>
         <p><strong>{% trans %}Nombre de billets :{% endtrans %}</strong> {{ commande.nbbillets }}</p>
         <p><strong>{% trans %}Type de billets: {% endtrans %}</strong>{{ commande.type }}</p>
         <p><strong>{% trans %}Date de la visite:{% endtrans %}</strong> {{ commande.dateVisite|date('d/m/Y') }}</p>
-
         <hr>
 
         <p class="montant">{% trans %}Montant de votre commande
