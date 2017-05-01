@@ -111,7 +111,7 @@ class Commande
      * @Assert\NotBlank()
      * @Assert\Range(
      *      min = 1,
-     *      max = 1000,
+     *      max = 20,
      *      minMessage = "Vous ne pouvez pas commander moins de {{ limit }} billet",
      *      maxMessage = "Vous ne pouvez pas commander plus de {{ limit }} billets"
      * )
@@ -122,6 +122,7 @@ class Commande
     /**
      * @var
      * @ORM\OneToMany(targetEntity="ALT\AppBundle\Entity\Billet", mappedBy="commande", fetch="EXTRA_LAZY", cascade={"persist", "remove"})
+     * @Assert\Valid
      */
     private $billets;
 
@@ -444,5 +445,9 @@ class Commande
     public function getEmail()
     {
         return $this->email;
+    }
+    
+    public function estGratuit(){
+        return $this->tarif == 0;
     }
 }
