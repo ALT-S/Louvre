@@ -37,7 +37,7 @@ class Commande
      * @var \DateTime
      *
      * @ORM\Column(name="dateCommande", type="datetime")
-     * @Assert\DateTime()
+     * @Assert\DateTime(groups={"commande"})
      */
     private $dateCommande;
 
@@ -45,8 +45,8 @@ class Commande
      * @var \DateTime
      *
      * @ORM\Column(name="dateVisite", type="date")
-     * @Assert\DateTime()
-     * @NonReservationDates()
+     * @Assert\DateTime(groups={"commande"})
+     * @NonReservationDates(groups={"commande"})
      */
     private $dateVisite;
 
@@ -54,7 +54,7 @@ class Commande
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=255)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(groups={"commande"})
      *
      */
     private $type;
@@ -108,14 +108,15 @@ class Commande
      * @var int
      *
      * @ORM\Column(name="nbBillets", type="integer")
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(groups={"commande"})
      * @Assert\Range(
      *      min = 1,
      *      max = 20,
      *      minMessage = "Vous ne pouvez pas commander moins de {{ limit }} billet",
-     *      maxMessage = "Vous ne pouvez pas commander plus de {{ limit }} billets"
+     *      maxMessage = "Vous ne pouvez pas commander plus de {{ limit }} billets",
+     *      groups={"commande"}
      * )
-     * @MaxBillet()
+     * @MaxBillet(groups={"commande"})
      */
     private $nbBillets;
 
@@ -130,8 +131,8 @@ class Commande
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
-     * @Assert\NotBlank()
-     * @Assert\Email()
+     * @Assert\NotBlank(groups={"commande"})
+     * @Assert\Email(groups={"commande"})
      */
     private $email;
 

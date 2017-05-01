@@ -12,6 +12,7 @@ namespace ALT\AppBundle\Controller;
 use ALT\AppBundle\Entity\Commande;
 use ALT\AppBundle\Form\CommandeBilletType;
 use ALT\AppBundle\Form\CommandeType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,18 +26,14 @@ class FrontController extends Controller
      */
     public function accueilAction(Request $request)
     {
-        $commande = $request->getSession()->get('commande');
-        if ($commande === null) {
-            $commande = new Commande();
-        }
+        $manager = $this->get('app.manager.commande');
+        $commande = $manager->getCommandeOuCreerUneNouvelle();
 
         $form = $this->get('form.factory')->create(CommandeType::class, $commande); // Création du formulaire basé sur le type "CommandeType"
-
-        // Si le formulaire a été soumis
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->get('app.manager.commande')->preparerBillets($commande);
-            $request->getSession()->set('commande', $commande);
+            $manager->preparerBillets($commande);
+            $manager->stockEnSession($commande);
 
             return $this->redirectToRoute("infos");
         }
@@ -53,15 +50,14 @@ class FrontController extends Controller
      */
     public function infosAction(Request $request)
     {
+        $manager = $this->get('app.manager.commande');
+        $commande = $manager->getCommande();
 
-        $commande = $request->getSession()->get('commande');
         $form = $this->get('form.factory')->create(CommandeBilletType::class, $commande);
-
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-
-            $commande = $this->get('app.manager.commande')->calculerTarif($form->getData());
-            $request->getSession()->set('commande', $commande);
+            $manager->calculerTarif($commande);
+            $manager->stockEnSession($commande);
 
             return $this->redirectToRoute('panier');
         }
@@ -78,11 +74,7 @@ class FrontController extends Controller
      */
     public function panierAction(Request $request)
     {
-        $commande = $request->getSession()->get('commande');
-        if ($commande == null) { // Si l'objet n'existe pas, on retourne sur la page d'accueil !!
-            // Ajout d'un message flash ?
-            return $this->redirectToRoute('accueil');
-        }
+        $commande = $this->get('app.manager.commande')->getCommande();
         
         return $this->render('ALTAppBundle::Panier.html.twig', array(
             'commande' => $commande,
@@ -97,23 +89,17 @@ class FrontController extends Controller
      */
     public function paiementAction(Request $request)
     {
-
-        $commande = $request->getSession()->get('commande');
-        if ($commande == null) { // Si l'objet n'existe pas, on retourne sur la page d'accueil !!
-            // Ajout d'un message flash ?
-            return $this->redirectToRoute('accueil');
-        }
+        $manager = $this->get('app.manager.commande');
+        $mailer = $this->get('app.manager.mail');
+        $commande = $manager->getCommande();
 
         /**
          * Si la commande est gratuite, on passe la phase de paiement
          */
-        if ($commande->getTarif() < 1){
+        if ($commande->estGratuit()){
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($commande);
-            $em->flush();
-
-            $this->get('app.manager.mail')->envoyerConfirmationCommande($commande);
+            $manager->faireGratuit($commande);
+            $mailer->envoyerConfirmationCommande($commande);
 
             return $this->redirectToRoute("confirmation", array(
                 'commandeId' => $commande->getId(),
@@ -126,10 +112,9 @@ class FrontController extends Controller
             // Get the payment token submitted by the form:
             $token = $request->request->get('stripeToken');
 
-            $resultat = $this->get('app.manager.commande')->fairePayer($commande, $token);
-
+            $resultat = $manager->fairePayer($commande, $token);
             if ($resultat) {
-                $this->get('app.manager.mail')->envoyerConfirmationCommande($commande);
+                $mailer->envoyerConfirmationCommande($commande);
 
                 return $this->redirectToRoute("confirmation", array(
                     'commandeId' => $commande->getId(),
@@ -144,17 +129,12 @@ class FrontController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @Route("/confirmation/{commandeId}", name="confirmation")
+     * @ParamConverter("commande", class="ALTAppBundle:Commande", options={"id" = "commandeId"})
      */
-    public function confirmationAction($commandeId, Request $request)
+    public function confirmationAction(Commande $commande)
     {
-        $em = $this->getDoctrine()->getManager();
-        $commande = $em->getRepository('ALTAppBundle:Commande')->find($commandeId);
 
-        if ($commande === null) {
-            // erreur !
-        }
-
-        $request->getSession()->set('commande', null);
+        $this->get('app.manager.commande')->retireDeLaSession();
 
         return $this->render('ALTAppBundle::Confirmation.html.twig', array(
             'commande' => $commande
