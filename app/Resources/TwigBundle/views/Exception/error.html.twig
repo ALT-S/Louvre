@@ -1,4 +1,20 @@
 {% extends "::layout.html.twig" %}
 
 {% block body %}
+    <div class="erreur">
+        <h1 class="error">Oups! Une erreur s'est produite</h1>
+
+        <p class="oups">
+            <img alt="photo tableau-pop-art-oups" class="oupsphoto" src= {{ asset('image/tableau-pop-art-femme-bulle-oups-60x60-cm-11697_680x450.jpg') }}>
+        </p>
+
+        <h2 class="errorpage">Erreur "{{ status_code }}" <br></h2>
+
+        <p class="fr">Quelque chose est cassé. Veuillez nous envoyer un courriel à [email@email.fr]
+            et nous faire savoir ce que vous faisiez lorsque cette erreur s'est produite.
+            Nous allons le réparer dès que possible. Désolé pour les inconvénients causés ...</p>
+
+        <p class="fr">Nous vous prions de bien vouloir nous en excusez !</p>
+
+    </div>
 {% endblock %}

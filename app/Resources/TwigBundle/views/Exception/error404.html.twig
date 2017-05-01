@@ -1,4 +1,24 @@
 {% extends "::layout.html.twig" %}
 
 {% block body %}
+    <div class="erreur">
+        <h1 class="error">Oups! Une erreur s'est produite</h1>
+
+        <p class="oups">
+            <img alt="photo tableau-pop-art-oups" class="oupsphoto" src= {{ asset('image/tableau-pop-art-femme-bulle-oups-60x60-cm-11697_680x450.jpg') }}>
+        </p>
+
+        <h2 class="errorpage">Erreur "{{ status_code }}" <br>
+            Page non trouvé !
+        </h2>
+
+        <p class="fr">Désolé, mais nous n'avons pas pu trouver la page que vous cherchez.
+            Elle a peut être disparue, a été effacée, modifiée ou remis
+            temporairement en brouillon</p>
+
+        <p class="url">Veuillez vérifier que vous avez bien écrit l'url de la page</p>
+
+        <p class="fr">Nous vous prions de bien vouloir nous en excusez !</p>
+
+    </div>
 {% endblock %}
