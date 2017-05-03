@@ -75,6 +75,13 @@ class FrontController extends Controller
     public function panierAction(Request $request)
     {
         $commande = $this->get('app.manager.commande')->getCommande();
+
+
+        if (false == $commande->isBilletsValides()) {
+            return $this->redirectToRoute('infos');
+        }
+
+
         
         return $this->render('ALTAppBundle::Panier.html.twig', array(
             'commande' => $commande,

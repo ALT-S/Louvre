@@ -40,14 +40,21 @@
             </div>
 
             <h3>{% trans %}2. Choisissez une date{% endtrans %}</h3>
-
+            <div class="fermeture">
+                <h5>Jours de fermeture</h5>
+                <p>Le Musée du Louvre est fermé :</p>
+                <ul>
+                    <li>Les mardis et les dimanches</li>
+                    <li>Les 1er mai, les 1er Novembre et les 25 Decembre</li>
+                </ul>
+            </div>
             <div class="form-group billetterie">
 
                 {{ form_label(form.dateVisite, "Date de visite", {'label_attr': {'class': 'col-sm-5 control-label'}}) }}
                 {{ form_errors(form.dateVisite) }}
 
                 <div class="col-sm-5">
-                    {{ form_widget(form.dateVisite) }}
+                    {{ form_widget(form.dateVisite, {value : "now"|date("d/m/Y")}) }}
                 </div>
             </div>
 
@@ -71,7 +78,7 @@
                 {{ form_errors(form.nbBillets) }}
 
                 <div class="col-sm-2">
-                    {{ form_widget(form.nbBillets, {attr: {value:1, step:1, min:1}}) }}
+                    {{ form_widget(form.nbBillets, {attr: {step:1, min:1}}) }}
                 </div>
 
                 <div class="suivant col-lg-2">

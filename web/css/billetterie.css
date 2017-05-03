@@ -396,6 +396,7 @@ img {
 
 label{
     margin-left: 8px;
+    display: inline !important;
 }
 
 .cgvbt{
@@ -553,3 +554,44 @@ h2.errorpage{
     padding-left: 15px;
 }
 
+td.old.disabled.day {
+    background-color: rgba(234, 234, 234, 0.39)!important;
+}
+
+td.disabled.day{
+    background-color: rgba(234, 234, 234, 0.39) !important;
+}
+
+.day{
+    background-color: aliceblue !important;
+}
+
+.month.disabled{
+    background-color: rgba(234, 234, 234, 0.39) !important;
+}
+
+.year.disabled{
+    background-color: rgba(234, 234, 234, 0.39) !important;
+}
+
+.datepicker-switch{
+     color: white;
+     background-color: #860101;
+ }
+
+.datepicker-switch:hover{
+    color: white!important;
+    background-color: #860101!important;
+}
+
+th.dow{
+    border-bottom: black 1px solid !important;
+}
+
+.fermeture{
+    border: 1px solid #860101;
+    border-radius: 4px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 20px;
+}

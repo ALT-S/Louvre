@@ -135,6 +135,16 @@ class Commande
     }
 
 
+    public function isBilletsValides()
+    {
+        foreach ($this->billets as $billet) {
+            if ($billet->getNom() == null) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 
     /**
      * Get id

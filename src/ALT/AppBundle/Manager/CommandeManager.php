@@ -13,7 +13,6 @@ use ALT\AppBundle\Entity\Billet;
 use ALT\AppBundle\Entity\Commande;
 use ALT\AppBundle\Exception\CommandeNotFoundException;
 use Doctrine\ORM\EntityManager;
-use Symfony\Component\BrowserKit\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 class CommandeManager
@@ -185,6 +184,12 @@ class CommandeManager
         $commande->setCodeReservation($code);
     }
 
+    /**
+     * Récupère la commande depuis la session
+     *
+     * @return Commande
+     * @throws CommandeNotFoundException
+     */
     public function getCommande()
     {
         $commande = $this->session->get('commande');
@@ -194,6 +199,7 @@ class CommandeManager
 
         return $commande;
     }
+    
 
     public function getCommandeOuCreerUneNouvelle()
     {

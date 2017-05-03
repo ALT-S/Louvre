@@ -2,11 +2,11 @@
 
 {% block body %}
 
-    {% if app.session.get('commande') is not null %}
+    {% if app.session.get('commande') is not null and app.session.get('commande').isBilletsValides() %}
         <div class="cgvbt">
             <a class="btn btn-default achat" href="{{ path('panier') }}">
                 <i class="glyphicon glyphicon-shopping-cart"></i>
-                {% trans %} Retour au pannier{% endtrans %}
+                {% trans %} Retour au panier{% endtrans %}
             </a>
         </div>
     {% endif %}
