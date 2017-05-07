@@ -237,6 +237,16 @@ Suivant: Next
 'N° de transaction :': 'Transaction Number:'
 'Statut de la transaction :': 'Status of transaction :'
 'VOS BILLETS :': 'YOUR TICKETS :'
-OUI: YES
+OUI: 'YES'
 '<strong>Attention :</strong> il sera nécessaire de présenter sa carte d’étudiant, militaire ou équivalent lors de l’entrée pour prouver qu’on bénéficie bien du tarif réduit.)': '<Strong> Attention: </ strong> It will be necessary to present your student card, military or equivalent at the entrance to prove that you are benefiting from the reduced rate.)'
-NON: NO
+NON: 'NO'
+'Retour au panier': 'Back to Cart'
+'5. Renseignez les informations': '5. Fill in the information'
+'7. Paiement': '7. Payment'
+'6. Votre panier': '6. Your basket'
+'J''accèpte les CGV -': 'I accept the CGV-'
+'Conditions générales de vente': 'Terms of Sales'
+'Jours de fermeture': 'Closing days'
+'Le Musée du Louvre est fermé :': 'The Louvre Museum is closed :'
+'Les mardis et les dimanches': 'Tuesdays and Sundays'
+'Les 1er mai, les 1er Novembre et les 25 Decembre': 'May 1st, November 1st and December 25th'
