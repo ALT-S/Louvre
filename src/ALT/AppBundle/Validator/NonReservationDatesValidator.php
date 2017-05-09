@@ -10,11 +10,11 @@ use Symfony\Component\Validator\ConstraintValidator;
 class NonReservationDatesValidator extends ConstraintValidator
 {
 
-    static public function getJoursFermes()
+    static public function getJoursFermes($year = null)
     {
-        return ['25-12', '01-05', '01-11'];
-
+        return ['25-12', '01-05', '01-11', '01-01', '01-05', '08-05', '14-07', '15-08', '11-11'];
     }
+
     /**
      * {@inheritdoc}
      */
@@ -23,7 +23,7 @@ class NonReservationDatesValidator extends ConstraintValidator
 
         $jourmois = $value->format('d-m');
         if (in_array($jourmois, self::getJoursFermes())) {
-            $this->context->addViolation('Le Musée du Louvre est fermé les 1er mai, les 11 novembre et les 25 decembre, ');
+            $this->context->addViolation('Le Musée du Louvre est fermé les jours fériés ');
         }
 
         // vérification dimanche & mardi
