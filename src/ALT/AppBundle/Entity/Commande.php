@@ -138,7 +138,7 @@ class Commande
     public function isBilletsValides()
     {
         foreach ($this->billets as $billet) {
-            if ($billet->getNom() == null) {
+            if ($billet->getNom() === null) {
                 return false;
             }
         }

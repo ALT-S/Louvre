@@ -77,7 +77,7 @@ class FrontController extends Controller
         $commande = $this->get('app.manager.commande')->getCommande();
 
 
-        if (false == $commande->isBilletsValides()) {
+        if (false === $commande->isBilletsValides()) {
             return $this->redirectToRoute('infos');
         }
 

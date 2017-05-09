@@ -193,7 +193,7 @@ class CommandeManager
     public function getCommande()
     {
         $commande = $this->session->get('commande');
-        if ($commande == null) { // Si l'objet n'existe pas, on retourne sur la page d'accueil !!
+        if ($commande === null) { // Si l'objet n'existe pas, on retourne sur la page d'accueil !!
             throw new CommandeNotFoundException();
         }
 
