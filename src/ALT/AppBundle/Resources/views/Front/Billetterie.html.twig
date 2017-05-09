@@ -45,7 +45,6 @@
                 <p>{% trans %}Le Musée du Louvre est fermé :{% endtrans %}</p>
                 <ul>
                     <li>{% trans %}Les mardis et les dimanches{% endtrans %}</li>
-                    <li>{% trans %}Les 1er mai, les 1er Novembre et les 25 Decembre{% endtrans %}</li>
                     <li>{% trans %}Ainsi que les jours fériés{% endtrans %}</li>
                 </ul>
             </div>
@@ -83,7 +82,7 @@
                 </div>
 
                 <div class="suivant col-lg-2">
-                    <input class="bouton" type="submit" value="{% trans %}Suivant{% endtrans %}"/>
+                    <input name="submit" class="bouton" type="submit" value="{% trans %}Suivant{% endtrans %}"/>
                 </div>
                 {{ form_rest(form) }}
 

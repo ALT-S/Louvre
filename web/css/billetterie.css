@@ -595,3 +595,15 @@ th.dow{
     padding-right: 15px;
     margin-top: 20px;
 }
+
+p.adresse{
+    text-align: center;
+    font-weight: bold;
+    padding: 15px;
+}
+
+p.tel{
+    text-align: center;
+    padding-left: 15px;
+    padding-right: 15px;
+}
