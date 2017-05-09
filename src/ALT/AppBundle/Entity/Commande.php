@@ -14,7 +14,7 @@ use ALT\AppBundle\Validator\MaxBillet;
  *
  * @ORM\Table(name="commande")
  * @ORM\Entity(repositoryClass="ALT\AppBundle\Repository\CommandeRepository")
- * @NonReservationType()
+ * @NonReservationType(groups={"commande"})
  */
 class Commande
 {
@@ -135,6 +135,16 @@ class Commande
     }
 
 
+    public function isBilletsValides()
+    {
+        foreach ($this->billets as $billet) {
+            if ($billet->getNom() == null) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 
     /**
      * Get id
