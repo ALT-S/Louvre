@@ -225,8 +225,9 @@ Tarifs: Tarifs
 "<strong> Attention : </strong> Il sera nécessaire de présenter sa carte d’étudiant, militaire ou\n                équivalent\n                lors de\n                l’entrée pour prouver qu’on bénéficie bien du tarif réduit.": "<strong> Attention : </strong> Il sera nécessaire de présenter sa carte d’étudiant, militaire ou\n                équivalent\n                lors de\n                l’entrée pour prouver qu’on bénéficie bien du tarif réduit."
 Menu: Menu
 Email: Email
-"Date de visite": Date de visite
-"Type de la visite": Type de la visite
-"Demi-Journée": Demi-Journée
-"Journée": Journée
-"Nombre de billets": Nombre de billets
+'Date de visite': 'Date de visite'
+'Type de la visite': 'Type de la visite'
+Demi-Journée: Demi-Journée
+Journée: Journée
+'Nombre de billets': 'Nombre de billets'
+'Ainsi que les jours fériés': 'Ainsi que les jours fériés'

@@ -14,7 +14,7 @@ use ALT\AppBundle\Validator\MaxBillet;
  *
  * @ORM\Table(name="commande")
  * @ORM\Entity(repositoryClass="ALT\AppBundle\Repository\CommandeRepository")
- * @NonReservationType()
+ * @NonReservationType(groups={"commande"})
  */
 class Commande
 {

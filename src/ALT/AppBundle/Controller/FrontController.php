@@ -38,7 +38,7 @@ class FrontController extends Controller
             return $this->redirectToRoute("infos");
         }
 
-        return $this->render('ALTAppBundle::Billetterie.html.twig', array(
+        return $this->render('@ALTApp/Front/Billetterie.html.twig', array(
             'form' => $form->createView(), // Passage du formulaire à la vue
         ));
     }
@@ -62,7 +62,7 @@ class FrontController extends Controller
             return $this->redirectToRoute('panier');
         }
 
-        return $this->render('ALTAppBundle::Infos.html.twig', array(
+        return $this->render('ALTAppBundle:Front:Infos.html.twig', array(
             'form' => $form->createView(), // Passage du formulaire à la vue
         ));
     }
@@ -83,7 +83,7 @@ class FrontController extends Controller
 
 
         
-        return $this->render('ALTAppBundle::Panier.html.twig', array(
+        return $this->render('ALTAppBundle:Front:Panier.html.twig', array(
             'commande' => $commande,
         ));
     }
@@ -129,7 +129,7 @@ class FrontController extends Controller
             }
         }
 
-        return $this->render('ALTAppBundle::Paiemment.html.twig');
+        return $this->render('ALTAppBundle:Front:Paiemment.html.twig');
     }
 
     /**
@@ -143,7 +143,7 @@ class FrontController extends Controller
 
         $this->get('app.manager.commande')->retireDeLaSession();
 
-        return $this->render('ALTAppBundle::Confirmation.html.twig', array(
+        return $this->render('ALTAppBundle:Front:Confirmation.html.twig', array(
             'commande' => $commande
         ));
     }
@@ -155,7 +155,7 @@ class FrontController extends Controller
      */
     public function tarifsAction()
     {
-        return $this->render('ALTAppBundle::Tarifs.html.twig');
+        return $this->render('ALTAppBundle:Front:Tarifs.html.twig');
     }
 
     /**
@@ -165,7 +165,7 @@ class FrontController extends Controller
      */
     public function cgvAction()
     {
-        return $this->render('ALTAppBundle::CGV.html.twig');
+        return $this->render('ALTAppBundle:Front:CGV.html.twig');
     }
 
     /**
@@ -175,6 +175,6 @@ class FrontController extends Controller
      */
     public function aideAction()
     {
-        return $this->render('ALTAppBundle::Aide.html.twig');
+        return $this->render('ALTAppBundle:Front:Aide.html.twig');
     }
 }
