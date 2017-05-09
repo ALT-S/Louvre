@@ -9,6 +9,6 @@ parameters:
     mailer_host: ~
     mailer_user: ~
     mailer_password: ~
-    secret: ~
+    secret: ThisTokenIsNotSoSecretChangeIt
     stripe_api: ~
     limite_max_billet: 1000
