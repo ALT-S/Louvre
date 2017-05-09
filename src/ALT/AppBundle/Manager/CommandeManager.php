@@ -13,7 +13,6 @@ use ALT\AppBundle\Entity\Billet;
 use ALT\AppBundle\Entity\Commande;
 use ALT\AppBundle\Exception\CommandeNotFoundException;
 use Doctrine\ORM\EntityManager;
-use Symfony\Component\BrowserKit\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 class CommandeManager
@@ -144,6 +143,10 @@ class CommandeManager
             return false;
         }
 
+        $this->creerCodeReservation($commande);
+        $commande->setDateFacturation(new \DateTime());
+        $commande->setNumeroTransaction($charge['balance_transaction']);
+
         $this->manager->persist($commande);
         $this->manager->flush();
               
@@ -152,10 +155,41 @@ class CommandeManager
 
     public function faireGratuit(Commande $commande)
     {
+        $this->creerCodeReservation($commande);
+        $commande->setDateFacturation(new \DateTime());
+
         $this->manager->persist($commande);
         $this->manager->flush();
     }
 
+    private function creerCodeReservation(Commande $commande)
+    {
+        do {
+            //Génération code unique
+            $code = uniqid('abcdefghijklmnopqrstuvwxyz'); // prends l'alphabet + nombre aléatoire
+            $code = str_shuffle($code); // on rends aléatoire le résultat obtenu par uniqid()
+            $code = substr($code, 0, 7); // on prends les 7 premiers caractères
+
+            // Vérification si ce code n'existe pas en base de données
+            $qbu = $this->manager->getRepository('ALTAppBundle:Commande')->createQueryBuilder('c');
+            $qbu
+                ->select('COUNT(c.codeReservation)')
+                ->where('c.codeReservation = :code')
+                ->setParameter('code', $code);
+
+            $result = $qbu->getQuery()->getSingleScalarResult();
+
+        } while ($result != 0); // Si ce code est déjà existant, il faut en regénérer un nouveau et recommencer ce qu'il y a plus haut.
+
+        $commande->setCodeReservation($code);
+    }
+
+    /**
+     * Récupère la commande depuis la session
+     *
+     * @return Commande
+     * @throws CommandeNotFoundException
+     */
     public function getCommande()
     {
         $commande = $this->session->get('commande');
@@ -165,6 +199,7 @@ class CommandeManager
 
         return $commande;
     }
+    
 
     public function getCommandeOuCreerUneNouvelle()
     {

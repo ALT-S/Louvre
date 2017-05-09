@@ -14,7 +14,7 @@ use ALT\AppBundle\Validator\MaxBillet;
  *
  * @ORM\Table(name="commande")
  * @ORM\Entity(repositoryClass="ALT\AppBundle\Repository\CommandeRepository")
- * @NonReservationType()
+ * @NonReservationType(groups={"commande"})
  */
 class Commande
 {
@@ -74,12 +74,7 @@ class Commande
      */
     private $codeReservation;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="statut", type="integer")
-     */
-    private $statut;
+  
 
     /**
      * @var \DateTime
@@ -96,13 +91,6 @@ class Commande
      */
     private $numeroTransaction;
     
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="data", type="string", length=255, nullable=true)
-     */
-    private $data;
 
     /**
      * @var int
@@ -144,10 +132,19 @@ class Commande
         // Par défaut, la date de la commande est la date d'aujourd'hui
         $this->dateCommande = new \Datetime();
         $this->billets = new ArrayCollection();
-        $this->statut = 1;
     }
 
 
+    public function isBilletsValides()
+    {
+        foreach ($this->billets as $billet) {
+            if ($billet->getNom() == null) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 
     /**
      * Get id
@@ -255,29 +252,8 @@ class Commande
         return $this->codeReservation;
     }
 
-    /**
-     * Set statut
-     *
-     * @param string $statut
-     *
-     * @return Commande
-     */
-    public function setStatut($statut)
-    {
-        $this->statut = $statut;
 
-        return $this;
-    }
-
-    /**
-     * Get statut
-     *
-     * @return string
-     */
-    public function getStatut()
-    {
-        return $this->statut;
-    }
+ 
 
     /**
      * Set dateFacturation
@@ -327,29 +303,6 @@ class Commande
         return $this->numeroTransaction;
     }
 
-    /**
-     * Set data
-     *
-     * @param string $data
-     *
-     * @return Commande
-     */
-    public function setData($data)
-    {
-        $this->data = $data;
-
-        return $this;
-    }
-
-    /**
-     * Get data
-     *
-     * @return string
-     */
-    public function getData()
-    {
-        return $this->data;
-    }
 
     
 

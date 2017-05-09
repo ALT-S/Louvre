@@ -68,7 +68,7 @@
             </div>
         </div>
 
-        <div class="col-sm-3 sidebar">
+        <div class="col-sm-4 sidebar">
             <img alt="logo louvre" class="logo" src= {{ asset('image/louvre-pyramids.jpg') }}>
             <h1>{% trans %}Musée du Louvre{% endtrans %}</h1>
 
@@ -111,10 +111,20 @@
                     </ul>
                 </div>
             </div>
+            <div class="menu">
+                <h6>Informations Pratiques</h6>
+
+                    <p class="adresse">Museée du Louvre<br>
+                    75058 Paris CEDEX 01<br>
+                    France</p>
+
+                <p class="tel">Tél. : +33 (0)1 40 20 53 17</p>
+
+            </div>
 
         </div><!-- /.sidebar -->
 
-        <div class="col-sm-9 accueil">
+        <div class="col-sm-8 accueil">
 
             <h1>{% trans %}"Billetterie officielle"{% endtrans %}</h1>
 
@@ -170,8 +180,14 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
 
     <script>
+        var dateToday = new Date();
+
         jQuery(document).ready(function () {
-            $('.js-datepicker').datepicker();
+            $('.js-datepicker').datepicker({
+                startDate: dateToday,
+                todayHighlight: true,
+                weekStart: 1
+            });
         });
     </script>
 

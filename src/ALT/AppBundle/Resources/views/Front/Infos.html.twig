@@ -1,5 +1,6 @@
 {% extends "::layout.html.twig" %}
 
+
 {% block fil %}
     <span class="couleur">
         <a class="{% if app.request.attributes.get('_route') == 'accueil' %}navbar-brand{% endif %}
@@ -20,10 +21,10 @@
 
 {% block body %}
     <h3>{% trans %}5. Renseignez les informations{% endtrans %}</h3>
-    {{ form_start(form, {'method': 'POST'}) }}
+    {{ form_start(form, {'method': 'POST','attr': {'class': 'form-horizontal'}}) }}
 
     {% for formBillets in form.billets %}
-        <div class="row infos">
+        <div class="row infos ">
             <div class="col-sm-3 numero">
                 {% trans %} BILLET N°{% endtrans %}{{ loop.index }}
             </div>
@@ -44,9 +45,12 @@
                 {{ form_errors(formBillets.pays) }}
                 {{ form_widget(formBillets.pays) }}
 
+
                 {{ form_label(formBillets.dateNaissance, "Date de naissance") }}
                 {{ form_errors(formBillets.dateNaissance) }}
-                {{ form_widget(formBillets.dateNaissance) }}
+                {{ form_widget(formBillets.dateNaissance.day, {'attr': {'class': 'select-inline'}}) }}
+                {{ form_widget(formBillets.dateNaissance.month, {'attr': {'class': 'select-inline'}}) }}
+                {{ form_widget(formBillets.dateNaissance.year, {'attr': {'class': 'select-inline'}}) }}
 
                 {{ form_label(formBillets.tarifReduit, "Tarif réduit") }}
                 {{ form_errors(formBillets.tarifReduit) }}
@@ -55,12 +59,14 @@
             </div>
         </div>
     {% endfor %}
-    <div class="boutonInfo"> {{ form_row(form.enregistrer, {label: "Suivant"}) }} </div>
+
+    <div class="boutonInfo"><input class="bouton" type="submit" value="{% trans %}Suivant{% endtrans %}"/>
+     </div>
 
     {{ form_rest(form) }}
     {{ form_end(form) }}
 
-    <a class="btn btn-default retour" href="{{ path('accueil') }}">
+    <a class="btn btn-default retour1" href="{{ path('accueil') }}">
         <i class="glyphicon glyphicon-chevron-left"></i>
         {% trans %} Retour à la billetterie{% endtrans %}
     </a>

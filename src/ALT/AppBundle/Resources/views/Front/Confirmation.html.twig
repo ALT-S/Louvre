@@ -19,14 +19,15 @@
 
     <h2>{% if commande.tarif == 0 %}{% trans %}Votre commande a bien été enregistrée {% endtrans %}{% else %}{% trans %}Votre paiement a bien été effectué ! {% endtrans %}{% endif %}</h2>
 
-    <p>{% trans %}Vous receverez votre confirmation avec vos billets par mail, à l'adresse suivante :{% endtrans %} {{ commande.email }}</p>
+    <p class="mail">{% trans %}Vous receverez votre confirmation avec vos billets par mail, à l'adresse suivante :{% endtrans %} <strong>{{ commande.email }}</strong></p>
 
     <div>
+        <p class="code" ><strong>{% trans %}CODE DE RESERVATION{% endtrans %}
+                : {{ commande.codeReservation }}</strong></p>
         <p><strong>{% trans %}Date de la commande :{% endtrans %}</strong> {{ commande.dateCommande|date('d/m/Y') }}</p>
         <p><strong>{% trans %}Nombre de billets :{% endtrans %}</strong> {{ commande.nbbillets }}</p>
         <p><strong>{% trans %}Type de billets: {% endtrans %}</strong>{{ commande.type }}</p>
         <p><strong>{% trans %}Date de la visite:{% endtrans %}</strong> {{ commande.dateVisite|date('d/m/Y') }}</p>
-
         <hr>
 
         <p class="montant">{% trans %}Montant de votre commande
