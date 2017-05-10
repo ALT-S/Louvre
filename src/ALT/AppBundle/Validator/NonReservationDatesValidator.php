@@ -26,6 +26,26 @@ class NonReservationDatesValidator extends ConstraintValidator
             $this->context->addViolation('Le Musée du Louvre est fermé les jours fériés ');
         }
 
+        // vérification si on est sur un jour férié pour Paques
+        $datePaques = easter_date($value->format('Y'));
+        $date = new \DateTime();
+        $date->setTimestamp($datePaques);
+        $date->modify('+1 day');
+        if ($value->format('d-m') == $date->format('d-m')) {
+            $this->context->addViolation('Le Musée du Louvre est fermé pour Paques ');
+        }
+
+        $date->modify('+38 day'); // Ascension
+        if ($value->format('d-m') == $date->format('d-m')) {
+            $this->context->addViolation('Le Musée du Louvre est fermé pour l\'Ascension ');
+        }
+
+        $date->modify('+11 day'); // Pentecote
+        if ($value->format('d-m') == $date->format('d-m')) {
+            $this->context->addViolation('Le Musée du Louvre est fermé pour la Pentecôte ');
+        }
+
+
         // vérification dimanche & mardi
         // savoir si le numéro du jour dans la semaine vaut (7 = dimanche, 2 mardi)
         $jourDeLaSemaine = $value->format('N');
