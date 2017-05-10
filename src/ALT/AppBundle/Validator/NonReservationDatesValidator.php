@@ -10,7 +10,7 @@ use Symfony\Component\Validator\ConstraintValidator;
 class NonReservationDatesValidator extends ConstraintValidator
 {
 
-    static public function getJoursFermes($year = null)
+    static public function getJoursFermes()
     {
         return ['25-12', '01-05', '01-11', '01-01', '01-05', '08-05', '14-07', '15-08', '11-11'];
     }
@@ -25,6 +25,26 @@ class NonReservationDatesValidator extends ConstraintValidator
         if (in_array($jourmois, self::getJoursFermes())) {
             $this->context->addViolation('Le Musée du Louvre est fermé les jours fériés ');
         }
+
+        // vérification si on est sur un jour férié pour Paques
+        $datePaques = easter_date($value->format('Y'));
+        $date = new \DateTime();
+        $date->setTimestamp($datePaques);
+        $date->modify('+1 day');
+        if ($value->format('d-m') == $date->format('d-m')) {
+            $this->context->addViolation('Le Musée du Louvre est fermé pour Paques ');
+        }
+
+        $date->modify('+38 day'); // Ascension
+        if ($value->format('d-m') == $date->format('d-m')) {
+            $this->context->addViolation('Le Musée du Louvre est fermé pour l\'Ascension ');
+        }
+
+        $date->modify('+11 day'); // Pentecote
+        if ($value->format('d-m') == $date->format('d-m')) {
+            $this->context->addViolation('Le Musée du Louvre est fermé pour la Pentecôte ');
+        }
+
 
         // vérification dimanche & mardi
         // savoir si le numéro du jour dans la semaine vaut (7 = dimanche, 2 mardi)
