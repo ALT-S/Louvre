@@ -28,7 +28,7 @@ class CommandeType extends AbstractType
                 'widget' => 'single_text',
                 'attr' => ['class' => 'js-datepicker',
                     'data-date-format' => 'dd-mm-yyyy',
-                    'data-date-days-of-week-disabled' => '02',
+                    'data-date-days-of-week-disabled' => '02', // 0 = dimanche / 2 = mardi
                     'data-date-dates-disabled' => '['.implode(', ', $joursFermes).']'
                 ],
                 'html5' => false,
@@ -65,13 +65,18 @@ class CommandeType extends AbstractType
         return 'alt_appbundle_commande';
     }
 
+    /**
+     * Récupère la liste des jours fermés.
+     *
+     * @return array
+     */
     private function getJoursFermes()
     {
         $joursFermes = NonReservationDatesValidator::getJoursFermes();
 
         $year = date('Y');
         $jours = [];
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 10; $i++) { // sur 10 ans
             foreach ($joursFermes as $j) {
                 $jours[] = '"'.$j.'-'.($year + $i).'"';
             }
