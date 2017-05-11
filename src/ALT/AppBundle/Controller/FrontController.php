@@ -72,17 +72,14 @@ class FrontController extends Controller
      *
      * @Route("/panier", name="panier")
      */
-    public function panierAction(Request $request)
+    public function panierAction()
     {
         $commande = $this->get('app.manager.commande')->getCommande();
-
 
         if (false === $commande->isBilletsValides()) {
             return $this->redirectToRoute('infos');
         }
 
-
-        
         return $this->render('ALTAppBundle:Front:Panier.html.twig', array(
             'commande' => $commande,
         ));
@@ -103,7 +100,7 @@ class FrontController extends Controller
         /**
          * Si la commande est gratuite, on passe la phase de paiement
          */
-        if ($commande->estGratuit()){
+        if ($commande->estGratuit()) {
 
             $manager->faireGratuit($commande);
             $mailer->envoyerConfirmationCommande($commande);

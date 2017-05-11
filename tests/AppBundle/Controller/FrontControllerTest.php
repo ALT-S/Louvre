@@ -4,6 +4,9 @@ namespace Tests\AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * Tests fonctionnels
+ */
 class FrontControllerTest extends WebTestCase
 {
     public function testPageAccueilOK()

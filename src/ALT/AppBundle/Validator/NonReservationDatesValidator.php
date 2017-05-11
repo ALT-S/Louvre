@@ -10,6 +10,11 @@ use Symfony\Component\Validator\ConstraintValidator;
 class NonReservationDatesValidator extends ConstraintValidator
 {
 
+    /**
+     * Retourne la liste des jours/mois qui sont fermés.
+     * 
+     * @return array
+     */
     static public function getJoursFermes()
     {
         return ['25-12', '01-05', '01-11', '01-01', '01-05', '08-05', '14-07', '15-08', '11-11'];

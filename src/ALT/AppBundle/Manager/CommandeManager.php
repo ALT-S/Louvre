@@ -36,9 +36,18 @@ class CommandeManager
         \Stripe\Stripe::setApiKey($stripeApiKey);
     }
 
+    /**
+     * Prépare le nombre exact d'entité Billet dans l'entité Commande.
+     *
+     * @param Commande $commande
+     * @return Commande
+     */
     public function preparerBillets(Commande $commande)
     {
         $billets = $commande->getBillets();
+
+        // si le nombre de billets demandé à la première page est inférieur aux nombres d'entités Billet dans l'entité Commande
+        // Alors, on supprime le surplus d'entités Billet dans l'entité Commande.
         if (count($billets) > $commande->getNbBillets()) {
             $billetsASupprimer = $billets->slice($commande->getNbBillets());
 
@@ -67,11 +76,14 @@ class CommandeManager
     public function calculerTarif(Commande $commande)
     {
 
+        $totalCommande = 0.00;
+
         foreach ($commande->getBillets() as $billet) {
             $this->calculerTarifBillet($billet);
+            $totalCommande += $billet->getTarif();
         }
 
-        $this->recalculerCommande($commande);
+        $commande->setTarif($totalCommande);
 
         return $commande;
     }
@@ -114,22 +126,6 @@ class CommandeManager
         $billet->setTarif($tarif);
     }
 
-    /**
-     * Recalcule le montant total de la commande.
-     *
-     * @param Commande $commande
-     */
-    private function recalculerCommande(Commande $commande)
-    {
-        $total = 0.00;
-        foreach ($commande->getBillets() as $billet) {
-            $total += $billet->getTarif();
-        }
-
-        $commande->setTarif($total);
-    }
-
-
     public function fairePayer(Commande $commande, $token)
     {
         try {
@@ -140,6 +136,7 @@ class CommandeManager
                 "source" => $token,
             ));
         } catch (\Exception $e) {
+            // Dans l'idéal, on pourrait "logger" l'erreur mais on va pas le faire ici pour l'exemple ;)
             return false;
         }
 

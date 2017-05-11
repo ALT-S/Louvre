@@ -11,13 +11,16 @@ use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 
+/**
+ * Tests unitaires
+ */
 class CommandeManagerTest extends TestCase
 {
 
     public function testStockageObjetCommandeEnSession()
     {
         $em = $this->getMockBuilder('Doctrine\ORM\EntityManager')->disableOriginalConstructor()->getMock();
-        $session = new Session(new MockArraySessionStorage());
+        $session = new Session(new MockArraySessionStorage()); // Triche sur le stockage
         $stripeApiKey = "stripeApiKey";
 
         $manager = new CommandeManager($em, $session, $stripeApiKey);
@@ -79,11 +82,14 @@ class CommandeManagerTest extends TestCase
         $manager = new CommandeManager($em, $session, $stripeApiKey);
 
         $commande = new Commande();
+
+        //$session->set('commande', null);
+        $this->assertNotSame($commande, $manager->getCommandeOuCreerUneNouvelle());
+
         $session->set('commande', $commande);
         $this->assertSame($commande, $manager->getCommandeOuCreerUneNouvelle());
 
-        $session->set('commande', null);
-        $this->assertNotSame($commande, $manager->getCommandeOuCreerUneNouvelle());
+
     }
 
 
