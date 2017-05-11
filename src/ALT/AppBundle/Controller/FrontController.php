@@ -12,6 +12,7 @@ namespace ALT\AppBundle\Controller;
 use ALT\AppBundle\Entity\Commande;
 use ALT\AppBundle\Form\CommandeBilletType;
 use ALT\AppBundle\Form\CommandeType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -23,6 +24,7 @@ class FrontController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @Route("/",name="accueil")
+     * @Method({"GET","POST"})
      */
     public function accueilAction(Request $request)
     {
@@ -47,6 +49,7 @@ class FrontController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @Route("/infos", name="infos")
+     * @Method({"GET","POST"})
      */
     public function infosAction(Request $request)
     {
@@ -71,6 +74,7 @@ class FrontController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @Route("/panier", name="panier")
+     * @Method({"GET"})
      */
     public function panierAction()
     {
@@ -90,6 +94,7 @@ class FrontController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @Route("/paiement", name="paiement")
+     * @Method({"GET","POST"})
      */
     public function paiementAction(Request $request)
     {
@@ -134,6 +139,7 @@ class FrontController extends Controller
      *
      * @Route("/confirmation/{commandeId}", name="confirmation")
      * @ParamConverter("commande", class="ALTAppBundle:Commande", options={"id" = "commandeId"})
+     * @Method({"GET"})
      */
     public function confirmationAction(Commande $commande)
     {
@@ -149,6 +155,7 @@ class FrontController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @Route("/tarifs", name="tarifs")
+     * @Method({"GET"})
      */
     public function tarifsAction()
     {
@@ -159,6 +166,7 @@ class FrontController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @Route("/cgv", name="cgv")
+     * @Method({"GET"})
      */
     public function cgvAction()
     {
@@ -169,6 +177,7 @@ class FrontController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @Route("/aide", name="aide")
+     * @Method({"GET"})
      */
     public function aideAction()
     {
