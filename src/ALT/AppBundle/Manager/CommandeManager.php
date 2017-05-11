@@ -57,8 +57,9 @@ class CommandeManager
             }
         }
 
-        if (count($billets) < $commande->getNbBillets()) {
-            for ($i = count($billets); $i < $commande->getNbBillets(); $i++) {
+        $nbBillet=count($billets);
+        if ($nbBillet < $commande->getNbBillets()) {
+            for ($i = $nbBillet; $i < $commande->getNbBillets(); $i++) {
                 $commande->addBillet(new Billet());
             }
         }
