@@ -15,6 +15,7 @@ use ALT\AppBundle\Validator\MaxBillet;
  * @ORM\Table(name="commande")
  * @ORM\Entity(repositoryClass="ALT\AppBundle\Repository\CommandeRepository")
  * @NonReservationType(groups={"commande"})
+ * @MaxBillet(groups={"commande"})
  */
 class Commande
 {
@@ -104,7 +105,7 @@ class Commande
      *      maxMessage = "Vous ne pouvez pas commander plus de {{ limit }} billets",
      *      groups={"commande"}
      * )
-     * @MaxBillet(groups={"commande"})
+     *
      */
     private $nbBillets;
 
@@ -134,7 +135,13 @@ class Commande
         $this->billets = new ArrayCollection();
     }
 
-
+    /**
+     * Vérifie que tous les billets de la commande actuelle ont un nom du visiteur à l'intérieur.
+     * Si un seul billet n'en possède pas, on retourne "faux".
+     * Autrement, on retourne "vrai"
+     * 
+     * @return bool
+     */
     public function isBilletsValides()
     {
         foreach ($this->billets as $billet) {

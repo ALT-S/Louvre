@@ -2,6 +2,7 @@
 
 {% block body %}
 
+    {# On affiche le bouton QUE SI tous les billets sont remplis, c'est à dire qu'ils ont tous un nom de client #}
     {% if app.session.get('commande') is not null and app.session.get('commande').isBilletsValides() %}
         <div class="cgvbt">
             <a class="btn btn-default achat" href="{{ path('panier') }}">

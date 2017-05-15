@@ -119,6 +119,7 @@ class FrontController extends Controller
         if ($request->isMethod('POST')) {
             // Token is created using Stripe.js or Checkout!
             // Get the payment token submitted by the form:
+            // Clé d'autentification de stripe pour la cde
             $token = $request->request->get('stripeToken');
 
             $resultat = $manager->fairePayer($commande, $token);
