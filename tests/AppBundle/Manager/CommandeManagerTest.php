@@ -117,6 +117,12 @@ class CommandeManagerTest extends TestCase
         $this->assertNotEquals(CommandeManager::TARIF_REDUIT, $commande->getTarif());
         $this->assertEquals(CommandeManager::TARIF_NORMAL, $commande->getTarif());
 
+        $b1->setTarifReduit(true);
+        $commande = $manager->calculerTarif($commande);
+        $this->assertEquals(CommandeManager::TARIF_REDUIT, $commande->getTarif());
+
+
+        $b1->setTarifReduit(false);
         $dt->modify('-45 years'); // Je suis à 65 ans
         $commande = $manager->calculerTarif($commande);
 

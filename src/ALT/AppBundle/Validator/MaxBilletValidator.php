@@ -16,6 +16,7 @@ class MaxBilletValidator extends ConstraintValidator
 {
     /** @var EntityManagerInterface */
     private $em;
+
     private $maxLimit;
 
     public function __construct(EntityManagerInterface $em, $maxLimit)
@@ -29,16 +30,19 @@ class MaxBilletValidator extends ConstraintValidator
      */
     public function validate($value, Constraint $constraint)
     {
-        $now = new \DateTime();
 
-        $nbBillets = $this->em->getRepository("ALTAppBundle:Commande")->getNbBillets($now);
+        $date = $value->getDateVisite();
+        $nbBilletsCommande = $value->getNbBillets();
 
-        if ($nbBillets + $value >= $this->maxLimit) {
+        $nbBillets = $this->em->getRepository("ALTAppBundle:Commande")->getNbBillets($date);
+
+        if ($nbBillets + $nbBilletsCommande >= $this->maxLimit) {
 
             // C'est cette ligne qui déclenche l'erreur pour le formulaire, avec en argument le message de la contrainte
             $this->context->addViolation($constraint->message, array("{{nb}}" => $this->maxLimit - $nbBillets));
         }
     }
+
 }
 
 

@@ -197,8 +197,13 @@ class CommandeManager
 
         return $commande;
     }
-    
 
+    /**
+     * R&cupère la commande en session.
+     * Si elle n'existe pas, plutôt que d'envoyer une exception, on crée un nouvel objet Commande.
+     *
+     * @return Commande
+     */
     public function getCommandeOuCreerUneNouvelle()
     {
         try {
@@ -210,11 +215,19 @@ class CommandeManager
         return $commande;
     }
 
+    /**
+     * Met en session l'objet Commande.
+     *
+     * @param Commande $commande
+     */
     public function stockEnSession(Commande $commande)
     {
         $this->session->set('commande', $commande);
     }
 
+    /**
+     * Supprime de la session l'objet Commande.
+     */
     public function retireDeLaSession()
     {
         $this->session->set('commande', null);

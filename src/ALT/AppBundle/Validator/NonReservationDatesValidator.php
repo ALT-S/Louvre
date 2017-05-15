@@ -17,7 +17,7 @@ class NonReservationDatesValidator extends ConstraintValidator
      */
     static public function getJoursFermes()
     {
-        return ['25-12', '01-05', '01-11', '01-01', '01-05', '08-05', '14-07', '15-08', '11-11'];
+        return ['25-12', '01-11', '01-01', '01-05', '08-05', '14-07', '15-08', '11-11'];
     }
 
     /**
@@ -28,7 +28,7 @@ class NonReservationDatesValidator extends ConstraintValidator
 
         $jourmois = $value->format('d-m');
         if (in_array($jourmois, self::getJoursFermes())) {
-            $this->context->addViolation('Le Musée du Louvre est fermé les jours fériés ');
+            $this->context->addViolation('Le Musée du Louvre est fermé à cette date là ');
         }
 
         // vérification si on est sur un jour férié pour Paques
